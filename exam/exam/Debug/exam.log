@@ -1,0 +1,20 @@
+﻿生成启动时间为 2019/1/10 12:25:32。
+     1>项目“G:\学习资料\C\WorkSpace\exam\exam\exam.vcxproj”在节点 2 上(Build 个目标)。
+     1>ClCompile:
+         G:\Visual Stutio\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"Debug\exam.pch" /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt 1.cpp 2.cpp
+         2.cpp
+     1>g:\学习资料\c\workspace\exam\exam\2.cpp(2): warning C4627: “#include <iostream>”: 在查找预编译头使用时跳过
+                 将指令添加到“stdafx.h”或重新生成预编译头
+     1>g:\学习资料\c\workspace\exam\exam\2.cpp(16): fatal error C1010: 在查找预编译头时遇到意外的文件结尾。是否忘记了向源中添加“#include "stdafx.h"”?
+         1.cpp
+     1>g:\学习资料\c\workspace\exam\exam\1.cpp(2): warning C4627: “#include <iostream>”: 在查找预编译头使用时跳过
+                 将指令添加到“stdafx.h”或重新生成预编译头
+     1>g:\学习资料\c\workspace\exam\exam\1.cpp(3): warning C4627: “#include <stdlib.h>”: 在查找预编译头使用时跳过
+                 将指令添加到“stdafx.h”或重新生成预编译头
+     1>g:\学习资料\c\workspace\exam\exam\1.cpp(18): fatal error C1010: 在查找预编译头时遇到意外的文件结尾。是否忘记了向源中添加“#include "stdafx.h"”?
+         正在生成代码...
+     1>已完成生成项目“G:\学习资料\C\WorkSpace\exam\exam\exam.vcxproj”(Build 个目标)的操作 - 失败。
+
+生成失败。
+
+已用时间 00:00:00.38
