@@ -26,83 +26,96 @@ int length(LinkedList head);
 Status  createListR(LinkedList *head,LinkedList *tail,int n);
 Status  createListF(LinkedList *head,LinkedList *tail,int n);
 void printList(LinkedList head);
+int mergeList(LinkedList headA,LinkedList *headB,LinkedList  *headC);
 
-
-int _tmain(int argc, _TCHAR* argv[])
-{
-	system("title 单链表操作");
-	printf("Hello,2019\n");
-	LinkedList head = NULL,tail = NULL;
-	int len = 12;
-
-	/*使用头插法创建链表*/
-	/*createListF(&head,&tail,length);*/
-
-	/*使用尾插法创建单链表*/
-	createListR(&head,&tail,len);
-	printf_s("链表的长度：%d\n",length(head));
-	printf("head:%p  data:%d   next:%p\n创建单链表：\n",head,head->data,head->next);
-	printList(head);
-
-	/*在链表尾部插入元素*/
-	ElementType  e = 22;
-	printf("在链表尾部插入元素%d\n",e);
-	insertElemR(&head,&tail,e);
-	printf_s("第1次插入元素后，链表的长度：%d\n",length(head));
-	printList(head);
-
-	/*在链表指定位置插入元素*/
-	int locate = length(head)+1;
-	e = 17;
-	printf("在链表位置%d插入元素%d\n",locate,e);
-	insertElem(&head,&tail,locate,e);
-	printf_s("第2次插入元素后，链表的长度：%d\n",length(head));
-	printList(head);
-
-	/*删除元素*/
-	/*第1个测试用例：删除位置3的元素*/
-	/*locate = 3;
-	printf("删除位置%d处的元素\n",locate);
-	delete(*head,*tail,locate,&e);
-	printList(head);*/
-
-
-	/*第2个测试用例：删除头指针*/
-	locate = 1;
-	printf("删除位置%d处的元素\n",locate);
-	delete(*head,*tail,locate,&e);
-	printList(head);
-
-
-	/*第3个测试用例：删除尾指针*/
-	locate = length(head);
-	printf("删除位置%d处的元素\n",locate);
-	delete(*head,*tail,locate,&e);
-	printList(head);
-
-
-	/*第4个测试用例：删除位置-1的元素*/
-	locate = -1;
-	printf("删除位置%d处的元素\n",locate);
-	delete(*head,*tail,locate,&e);
-	printList(head);
-
-	/*第5个测试用例：删除位置length(hwad)+1的元素*/
-	locate = length(head)+1;
-	printf("删除位置%d处的元素\n",locate);
-	delete(*head,*tail,locate,&e);
-	printList(head);
-
-	/*第6个测试用例：删除位置length(hwad)+1的元素*/
-	locate = length(head)+2;
-	printf("删除位置%d处的元素\n",locate);
-	delete(*head,*tail,locate,&e);
-	printList(head);
-
-
-	system("pause");
-	return 0;
-}
+//int  main()
+//{
+//	system("title 单链表操作");
+//	
+//	int len = 8;
+//
+//	printf("创建链表\n");
+//	LinkedList head = NULL,tail = NULL;
+//	createListF(&head,&tail,len);
+//	printf_s("链表的长度：%d\n",length(head));
+//	printList(head);
+//
+//	/*在链表尾部插入元素*/
+//	ElementType  e = 22;
+//	printf("在链表尾部插入元素%d\n",e);
+//	insertElemR(&head,&tail,e);
+//	printf_s("第1次插入元素后，链表的长度：%d\n",length(head));
+//	printList(head);
+//
+//	/*在链表指定位置插入元素*/
+//	int locate = length(head)+1;
+//	e = 17;
+//	printf("在链表位置%d插入元素%d\n",locate,e);
+//	insertElem(&head,&tail,locate,e);
+//	printf_s("第2次插入元素后，链表的长度：%d\n",length(head));
+//	printList(head);
+//
+//	/*删除元素*/
+//	/*第1个测试用例：删除位置3的元素*/
+//	locate = 3;
+//	printf("删除位置%d处的元素\n",locate);
+//	deleteElem(&head,&tail,locate,&e);
+//	printList(head);
+//
+//
+//	/*第2个测试用例：删除头指针*/
+//	locate = 1;
+//	printf("删除位置%d处的元素\n",locate);
+//	deleteElem(&head,&tail,locate,&e);
+//	printList(head);
+//
+//	/*第3个测试用例：删除尾指针*/
+//	locate = length(head);
+//	printf("删除位置%d处的元素\n",locate);
+//	deleteElem(&head,&tail,locate,&e);
+//	printList(head);
+//
+//
+//	/*第4个测试用例：删除位置-1的元素*/
+//	locate = -1;
+//	printf("删除位置%d处的元素\n",locate);
+//	deleteElem(&head,&tail,locate,&e);
+//	printList(head);
+//
+//	/*第5个测试用例：删除位置length(hwad)+1的元素*/
+//	locate = length(head)+1;
+//	printf("删除位置%d处的元素\n",locate);
+//	deleteElem(&head,&tail,locate,&e);
+//	printList(head);
+//
+//	/*第6个测试用例：删除位置length(hwad)+2的元素*/
+//	locate = length(head)+2;
+//	printf("删除位置%d处的元素\n",locate);
+//	deleteElem(&head,&tail,locate,&e);
+//	printList(head);
+//
+//	printf("销毁链表\n");
+//	destroyList(&head,&tail);
+//	printList(head);
+//
+//	printf("创建链表A\n");
+//	LinkedList headA = NULL,tailA = NULL;
+//	createListR(&headA,&tailA,len);
+//	printList(headA);
+//
+//	LinkedList headB = NULL,tailB = NULL;
+//	printf("创建链表B\n");
+//	createListR(&headB,&tailB,len);
+//	printList(headB);
+//
+//	LinkedList headC = NULL;
+//	printf("合并链表A和B\n");
+//	mergeList(headA,&headB,&headC);
+//	printList(headC);
+//
+//	system("pause");
+//	return 0;
+//}
 
 
 
@@ -112,7 +125,7 @@ void printList(LinkedList head)
     LinkedList p = head;
     while(p)
     {
-        printf("%d ",p->data,p->next);
+        printf("%d ",p?p->data:-1);
         p = p->next;
     }
     printf("\n\n");
@@ -128,6 +141,60 @@ int length(LinkedList head)
         count++;
     }
     return count;
+}
+
+
+int mergeList(LinkedList headA,LinkedList *headB,LinkedList  *headC)
+{
+	LinkedList a = headA;
+	LinkedList b = *headB;
+	*headC = (LinkedList)malloc(sizeof(	LNode));
+	if (!(*headC))
+	{
+		return -1;
+	}
+	(*headC)->next = NULL;
+	//(*headC)->data = headA->data < (*headB)->data ?headA->data:(*headB)->data;
+	if (a->data <= b->data)
+	{
+		(*headC)->data = a->data;
+		LinkedList p = a;
+		a = a->next;
+		free(p);
+		p = NULL;
+	}else
+	{
+		(*headC)->data = b->data;
+		LinkedList p = b;
+		b = b->next;
+		free(p);
+		p = NULL;
+	}
+	LinkedList pc = *headC;
+	while (a && b)
+	{
+		if (a->data <= b->data)
+		{
+			pc->next = a;
+			pc = a;
+			a = a->next;	
+		}else
+		{
+			pc->next = b;
+			pc = b;
+			b = b->next;
+		}
+	}
+	if (a)
+	{
+		pc->next = a;
+	}
+	if (b)
+	{
+		pc->next = b;
+	}
+	//free(*headB);
+	return 1;
 }
 
 //Status initList(LinkedList * head,LinkedList * tail)
@@ -176,15 +243,14 @@ Status insertElemR(LinkedList * head,LinkedList * tail,ElementType e)
 				//尾插法创建单链表
 Status  createListR(LinkedList *head,LinkedList *tail,int n)
 {
-		
-		printf("请输入%d个数：",n);
+		//printf("请输入%d个数：",n);
 		ElementType data = 0;
 		LinkedList p = NULL;
 		srand((unsigned int)time(NULL));
 		for (int i = 0; i < n; i++)
 		{
 			data = rand()%100+1;
-			//scanf_s("%d",&data);
+			/*scanf_s("%d",&data);*/
 			if (NULL == (*head))
 			{
 				*head = (LinkedList)malloc(sizeof(LNode));
@@ -292,7 +358,6 @@ Status insertElem(LinkedList * head,LinkedList * tail,int locate,ElementType e)
             //删除指定位置的元素
 Status deleteElem(LinkedList * head,LinkedList * tail,int locate,ElementType *e)
 {
-		printf_s("delete函数\n");
         int count = 1;
         LinkedList p = *head,q;
 		/*链表为空*/
