@@ -13,8 +13,6 @@ enum GraphKind{DG,DN,UDG,UDN};
 //权值类型
 typedef int VRTYPE;
 typedef int Status;
-typedef bool PathMatrix[MAX_VERTEX_NUM][MAX_VERTEX_NUM][MAX_VERTEX_NUM];
-typedef VRTYPE DistanceMatrix[MAX_VERTEX_NUM][MAX_VERTEX_NUM];
 //顶点信息类型
 typedef struct VertexType
 {
@@ -88,7 +86,6 @@ ArcNode *point(ArcNode *arc,ArcNode e,bool (* equal)(ArcNode,ArcNode),ArcNode *p
 void inputArc(InfoType **arc);
 void outputArc(InfoType arc);
 void display(ALGraph g);
-void shortedPathFloyd(ALGraph g,PathMatrix p,DistanceMatrix d);
 //访问标志数组
 bool visited[MAX_VERTEX_NUM];
 //访问函数变量

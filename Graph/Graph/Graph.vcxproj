@@ -80,8 +80,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ALGraph.h" />
+    <ClInclude Include="MakePath.h" />
     <ClInclude Include="MGraph.h" />
     <ClInclude Include="Queue.h" />
+    <ClInclude Include="ShortestPathDIJ.h" />
+    <ClInclude Include="ShortestPathFLOYD.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>

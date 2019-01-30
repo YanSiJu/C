@@ -33,6 +33,15 @@
     <ClInclude Include="MGraph.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="ShortestPathFLOYD.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ShortestPathDIJ.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="MakePath.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
