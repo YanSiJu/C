@@ -80,6 +80,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="125-ValidPalindrome.h" />
+    <ClInclude Include="206-ReverseLinkedList.h" />
     <ClInclude Include="LongestCommonPrefix.h" />
     <ClInclude Include="LongestSubstring.h" />
     <ClInclude Include="PalindromeNumber.h" />

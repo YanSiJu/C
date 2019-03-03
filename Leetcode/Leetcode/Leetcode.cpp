@@ -10,7 +10,9 @@
 //#include"SearchInsertPosition.h"
 //#include"LongestCommonPrefix.h"
 //#include"PalindromeNumber.h"
-#include"125-ValidPalindrome.h"
+//#include"125-ValidPalindrome.h"
+#include<time.h>
+#include"206-ReverseLinkedList.h"
 
 
 int _tmain(int argc, _TCHAR* argv[])
@@ -90,10 +92,11 @@ int _tmain(int argc, _TCHAR* argv[])
 	sprintf_s(str, "%d", 123); 
 	printf("str:%s\n", str);
 	printf("%d\n", INT_MAX);*/
-	printf_s("isPalindrome(\"A man, a plan, a canal: Panama\"):%d\n\n", isPalindrome("A man, a plan, a canal: Panama"));
+	//printf_s("--->%p\n",nullptr);
+	/*printf_s("isPalindrome(\"A man, a plan, a canal: Panama\"):%d\n\n", isPalindrome("A man, a plan, a canal: Panama"));
 	printf_s("isPalindrome(\"race a car\"):%d\n\n", isPalindrome("race a car"));
 	printf_s("isPalindrome(\" \"):%d\n\n", isPalindrome(" "));
-	printf_s("isPalindrome(\"0P\"):%d\n\n", isPalindrome("0P"));
+	printf_s("isPalindrome(\"0P\"):%d\n\n", isPalindrome("0P"));*/
 	//printf_s("isPalindrome(\" \"):%d\n\n", isPalindrome(" "));
 	/*printf_s("isPalindrome(222):%d\n\n", isPalindrome(222));
 	printf_s("isPalindrome(2222):%d\n\n", isPalindrome(2222));
@@ -102,6 +105,13 @@ int _tmain(int argc, _TCHAR* argv[])
 	printf_s("isPalindrome(-12321):%d\n\n", isPalindrome(-12321));
 	printf_s("isPalindrome(-121):%d\n\n", isPalindrome(-121));
 	printf_s("isPalindrome(10):%d\n\n", isPalindrome(10));*/
+
+	struct ListNode *head = NULL;
+	struct ListNode *tail = NULL;
+	createListF(&head,&tail,5);
+	printf_s("head:%p  val:%d  next:%p\n\n",head,head->val,head->next);
+	listTraverse(head);
+	listTraverse(reverseList(head));
 
 	system("pause");
 	return 0;
