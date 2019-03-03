@@ -79,8 +79,10 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="125-ValidPalindrome.h" />
     <ClInclude Include="LongestCommonPrefix.h" />
     <ClInclude Include="LongestSubstring.h" />
+    <ClInclude Include="PalindromeNumber.h" />
     <ClInclude Include="reverseInteger.h" />
     <ClInclude Include="SearchInsertPosition.h" />
     <ClInclude Include="stack.h" />

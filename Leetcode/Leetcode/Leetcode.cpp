@@ -1,16 +1,21 @@
 // Leetcode.cpp : 定义控制台应用程序的入口点。
 //
 
+
 #include "stdafx.h"
+#define _CRT_SECURE_NO_WARNINGS
 //#include"reverseInteger.h"
 //#include"LongestSubstring.h"
-#include<stdlib.h>
+//#include<stdlib.h>
 //#include"SearchInsertPosition.h"
-#include"LongestCommonPrefix.h"
+//#include"LongestCommonPrefix.h"
+//#include"PalindromeNumber.h"
+#include"125-ValidPalindrome.h"
+
 
 int _tmain(int argc, _TCHAR* argv[])
 {
-	system("title reverse");
+	system("title Leetcode");
 	//double x = 2,y=31;
 	//-2147483648
 	//printf_s("%f\n\n",pow(x,y));
@@ -53,7 +58,7 @@ int _tmain(int argc, _TCHAR* argv[])
 	target = 0;
 	printf_s("[1,3,5,6], 0:%d\n",searchInsert(nums,numSize,target));*/
 
-	char *strs[] = {"flower","flow","floight"};
+	//char *strs[] = {"flower","flow","floight"};
 	//char *strs[] = {"dog","racecar","car"};
 	//char *ptr=(char *)malloc(4*sizeof(char));
 	//if (!ptr)
@@ -64,10 +69,40 @@ int _tmain(int argc, _TCHAR* argv[])
 	//printf("%s",ptr);
 	//char *new_ptr=(char*)realloc(ptr,100*sizeof(char));
 	//printf("The address get by realloc is : %p\n",new_ptr);
-	char *s = longestCommonPrefix(strs, 3);
+	//char *s = longestCommonPrefix(strs, 3);
 	//int len = sizeof(s)/sizeof(s[0]);
-	int len = sizeof(s)/sizeof(s[0]);
-	printf("The longest Common  Prefix is : %s  %d\n",s,len);
+	/*int len = sizeof(s)/sizeof(s[0]);
+	printf("The longest Common  Prefix is : %s  %d\n",s,len);*/
+
+	/*char str[] = "123c@#FDsP[e?";
+	for (int i = 0; str[i] != 0; i++)
+	{
+		if(isdigit(str[i]))
+            printf("%c is an digit character\n", str[i]);
+		if(isalpha(str[i]))
+            printf("%c is an alphanumeric character\n", str[i]);
+	}*/
+        
+
+
+	/*int num = 1840;
+	char str[100];
+	sprintf_s(str, "%d", 123); 
+	printf("str:%s\n", str);
+	printf("%d\n", INT_MAX);*/
+	printf_s("isPalindrome(\"A man, a plan, a canal: Panama\"):%d\n\n", isPalindrome("A man, a plan, a canal: Panama"));
+	printf_s("isPalindrome(\"race a car\"):%d\n\n", isPalindrome("race a car"));
+	printf_s("isPalindrome(\" \"):%d\n\n", isPalindrome(" "));
+	printf_s("isPalindrome(\"0P\"):%d\n\n", isPalindrome("0P"));
+	//printf_s("isPalindrome(\" \"):%d\n\n", isPalindrome(" "));
+	/*printf_s("isPalindrome(222):%d\n\n", isPalindrome(222));
+	printf_s("isPalindrome(2222):%d\n\n", isPalindrome(2222));
+	printf_s("isPalindrome(12321):%d\n\n", isPalindrome(12321));
+	printf_s("isPalindrome(-2222):%d\n\n", isPalindrome(-2222));
+	printf_s("isPalindrome(-12321):%d\n\n", isPalindrome(-12321));
+	printf_s("isPalindrome(-121):%d\n\n", isPalindrome(-121));
+	printf_s("isPalindrome(10):%d\n\n", isPalindrome(10));*/
+
 	system("pause");
 	return 0;
 }
