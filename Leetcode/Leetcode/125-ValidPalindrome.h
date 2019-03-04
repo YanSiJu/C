@@ -5,10 +5,10 @@
 
 bool isPalindrome(char* s) {
 	int len = strlen(s);
-	if (0 == len || 1 == len)
+	/*if (0 == len || 1 == len)
 	{
 		return true;
-	}
+	}*/
 	for (int low = 0,high=len-1; low <= high; low++,high--)
 	{
 		while (!(isdigit(s[low]) || isalpha(s[low])))

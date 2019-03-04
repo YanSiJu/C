@@ -81,9 +81,13 @@
   <ItemGroup>
     <ClInclude Include="125-ValidPalindrome.h" />
     <ClInclude Include="206-ReverseLinkedList.h" />
+    <ClInclude Include="234-PalindromeLinkedList.h" />
+    <ClInclude Include="680-ValidPalindromeII.h" />
+    <ClInclude Include="List.h" />
     <ClInclude Include="LongestCommonPrefix.h" />
     <ClInclude Include="LongestSubstring.h" />
     <ClInclude Include="PalindromeNumber.h" />
+    <ClInclude Include="PalindromeString.h" />
     <ClInclude Include="reverseInteger.h" />
     <ClInclude Include="SearchInsertPosition.h" />
     <ClInclude Include="stack.h" />

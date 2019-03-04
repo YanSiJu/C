@@ -48,6 +48,18 @@
     <ClInclude Include="206-ReverseLinkedList.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="List.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="234-PalindromeLinkedList.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="PalindromeString.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="680-ValidPalindromeII.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">

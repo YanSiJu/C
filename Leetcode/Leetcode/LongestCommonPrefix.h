@@ -1,6 +1,6 @@
 #include<string.h>
 #include<stdlib.h>
-
+#include<stdio.h>
 
 char* longestCommonPrefix(char** strs, int strsSize) {
 	char *prefix=(char *)malloc(1*sizeof(char *));
@@ -14,7 +14,7 @@ char* longestCommonPrefix(char** strs, int strsSize) {
 	}*/
 	int size = 0;
 	int length = sizeof(prefix)/sizeof(prefix[0]);
-	printf("%d  \n",length);
+	printf_s("%d  \n",length);
 	char c;
 	int len = strlen(strs[0]);
 	for (int i = 0; i < len; i++)

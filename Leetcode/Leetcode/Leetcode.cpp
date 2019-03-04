@@ -3,7 +3,6 @@
 
 
 #include "stdafx.h"
-#define _CRT_SECURE_NO_WARNINGS
 //#include"reverseInteger.h"
 //#include"LongestSubstring.h"
 //#include<stdlib.h>
@@ -11,9 +10,9 @@
 //#include"LongestCommonPrefix.h"
 //#include"PalindromeNumber.h"
 //#include"125-ValidPalindrome.h"
-#include<time.h>
-#include"206-ReverseLinkedList.h"
-
+//#include"206-ReverseLinkedList.h"
+//#include"234-PalindromeLinkedList.h"
+#include"680-ValidPalindromeII.h"
 
 int _tmain(int argc, _TCHAR* argv[])
 {
@@ -96,6 +95,7 @@ int _tmain(int argc, _TCHAR* argv[])
 	/*printf_s("isPalindrome(\"A man, a plan, a canal: Panama\"):%d\n\n", isPalindrome("A man, a plan, a canal: Panama"));
 	printf_s("isPalindrome(\"race a car\"):%d\n\n", isPalindrome("race a car"));
 	printf_s("isPalindrome(\" \"):%d\n\n", isPalindrome(" "));
+	printf_s("isPalindrome(\"\"):%d\n\n", isPalindrome(""));
 	printf_s("isPalindrome(\"0P\"):%d\n\n", isPalindrome("0P"));*/
 	//printf_s("isPalindrome(\" \"):%d\n\n", isPalindrome(" "));
 	/*printf_s("isPalindrome(222):%d\n\n", isPalindrome(222));
@@ -106,12 +106,60 @@ int _tmain(int argc, _TCHAR* argv[])
 	printf_s("isPalindrome(-121):%d\n\n", isPalindrome(-121));
 	printf_s("isPalindrome(10):%d\n\n", isPalindrome(10));*/
 
-	struct ListNode *head = NULL;
+	/*struct ListNode *head = NULL;
 	struct ListNode *tail = NULL;
 	createListF(&head,&tail,5);
 	printf_s("head:%p  val:%d  next:%p\n\n",head,head->val,head->next);
 	listTraverse(head);
-	listTraverse(reverseList(head));
+	listTraverse(reverseList(head));*/
+
+	/*struct ListNode *head = NULL;*/
+	/*struct ListNode *tail = NULL;*/
+	/*createListF(&head,&tail,5);*/
+	/*insertElem(&head,1,1);
+	insertElem(&head,1,2);
+	insertElem(&head,1,2);
+	insertElem(&head,1,2);
+	insertElem(&head,1,1);
+	printf_s("List Traverse:");
+	listTraverse(head);
+	printf_s("isPalindrome(head):%d\n",isPalindrome(head));
+
+	printf_s("\n\n");
+	head = NULL;
+	insertElem(&head,1,1);
+	insertElem(&head,1,2);
+	insertElem(&head,1,2);
+	insertElem(&head,1,2);
+	insertElem(&head,1,3);
+	printf_s("List Traverse:");
+	listTraverse(head);
+	printf_s("isPalindrome(head):%d\n",isPalindrome(head));*/
+
+
+	char *s = "abbfa";
+	printf_s("s:%s    validPalindrome(s):%d\n\n",s,validPalindrome(s));
+
+	s = "deeee";
+	printf_s("s:%s    validPalindrome(s):%d\n\n",s,validPalindrome(s));
+
+	s = "abca";
+	printf_s("s:%s    validPalindrome(s):%d\n\n",s,validPalindrome(s));
+
+	s = "acbba";
+	printf_s("s:%s    validPalindrome(s):%d\n\n",s,validPalindrome(s));
+
+	s = "abad";
+	printf_s("s:%s    validPalindrome(s):%d\n\n",s,validPalindrome(s));
+
+	s = "abadc";
+	printf_s("s:%s    validPalindrome(s):%d\n\n",s,validPalindrome(s));
+
+	s = "ebcbbececabbacecbbcbe";
+	printf_s("s:%s    validPalindrome(s):%d\n\n",s,validPalindrome(s));
+
+	s = "aba";
+	printf_s("s:%s    validPalindrome(%s):%d\n\n",s,s,validPalindrome(s));
 
 	system("pause");
 	return 0;
