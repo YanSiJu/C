@@ -83,6 +83,7 @@
     <ClInclude Include="206-ReverseLinkedList.h" />
     <ClInclude Include="234-PalindromeLinkedList.h" />
     <ClInclude Include="680-ValidPalindromeII.h" />
+    <ClInclude Include="866-PrimePalindrome.h" />
     <ClInclude Include="List.h" />
     <ClInclude Include="LongestCommonPrefix.h" />
     <ClInclude Include="LongestSubstring.h" />

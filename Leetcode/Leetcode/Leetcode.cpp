@@ -12,7 +12,9 @@
 //#include"125-ValidPalindrome.h"
 //#include"206-ReverseLinkedList.h"
 //#include"234-PalindromeLinkedList.h"
-#include"680-ValidPalindromeII.h"
+//#include"680-ValidPalindromeII.h"
+#include"866-PrimePalindrome.h"
+#include<stdlib.h>
 
 int _tmain(int argc, _TCHAR* argv[])
 {
@@ -137,7 +139,7 @@ int _tmain(int argc, _TCHAR* argv[])
 	printf_s("isPalindrome(head):%d\n",isPalindrome(head));*/
 
 
-	char *s = "abbfa";
+	/*char *s = "abbfa";
 	printf_s("s:%s    validPalindrome(s):%d\n\n",s,validPalindrome(s));
 
 	s = "deeee";
@@ -159,7 +161,32 @@ int _tmain(int argc, _TCHAR* argv[])
 	printf_s("s:%s    validPalindrome(s):%d\n\n",s,validPalindrome(s));
 
 	s = "aba";
-	printf_s("s:%s    validPalindrome(%s):%d\n\n",s,s,validPalindrome(s));
+	printf_s("s:%s    validPalindrome(%s):%d\n\n",s,s,validPalindrome(s));*/
+	
+	int n = 6;
+	printf_s("n:%d    validPalindrome(%d):%d\n\n",n,n,primePalindrome(n));
+
+	n = 8;
+	printf_s("n:%d    validPalindrome(%d):%d\n\n",n,n,primePalindrome(n));
+
+	n = 13;
+	printf_s("n:%d    validPalindrome(%d):%d\n\n",n,n,primePalindrome(n));
+
+	n = 2;
+	printf_s("n:%d    validPalindrome(%d):%d\n\n",n,n,primePalindrome(n));
+
+	n = 1;
+	printf_s("n:%d    validPalindrome(%d):%d\n\n",n,n,primePalindrome(n));
+
+
+	n = 4;
+	printf_s("n:%d    validPalindrome(%d):%d\n\n",n,n,primePalindrome(n));
+	
+
+
+	 n = 9989900;
+	 /*100031000*/
+	printf_s("n:%d    validPalindrome(%d):%d\n\n",n,n,primePalindrome(n));
 
 	system("pause");
 	return 0;

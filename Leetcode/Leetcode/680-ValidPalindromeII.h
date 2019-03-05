@@ -25,7 +25,6 @@ bool validPalindrome(char* s) {
 			}
 			if (isPalindrome(str))
 			{
-				printf_s("str:%s\n",str);
 				return true;
 			}
 			//É¾³ýs[i]
@@ -37,7 +36,6 @@ bool validPalindrome(char* s) {
 			{
 				str[j] = s[j+1];
 			}
-			printf_s("str:%s\n",str);
 			return isPalindrome(str);
 		}
 	}
