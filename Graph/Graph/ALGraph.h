@@ -8,17 +8,22 @@
 #include"Queue.h"
 
 
+
 //图的种类  {有向图，有向网，无向图，无向网}
 enum GraphKind{DG,DN,UDG,UDN};
 //权值类型
 typedef int VRTYPE;
 typedef int Status;
+
+
 //顶点信息类型
 typedef struct VertexType
 {
 	//顶点名称
 	char name[MAX_NAME];
 }VertexType;
+
+
 //弧的信息类型
 typedef struct  InfoType
 {
@@ -39,12 +44,14 @@ typedef struct  ArcNode
 }ArcNode;
 
 
+
 //顶点
 typedef struct  VNode
 {
 	VertexType data;
 	ArcNode *firstArc;
 }VNode,AdjList[MAX_VERTEX_NUM];
+
 
 
 //邻接表存储结构
@@ -156,10 +163,10 @@ void createGraph(ALGraph *g)
 
 
 
-void shortedPathFloyd(ALGraph g,PathMatrix p,DistanceMatrix d)
-{
-
-}
+//void shortedPathFloyd(ALGraph g,PathMatrix p,DistanceMatrix d)
+//{
+//
+//}
 
 
 
@@ -182,7 +189,7 @@ ArcNode *point(ArcNode *arc,ArcNode e,bool (* equal)(ArcNode,ArcNode),ArcNode *p
 {
 	ArcNode *p = arc;
 	prior = NULL;
-	for (; p; p=p->nextArc)
+	for (;NULL != p; p=p->nextArc)
 	{
 		if (equal(*p,e))
 		{
@@ -209,7 +216,7 @@ VertexType getVex(ALGraph g,int v)
 Status putVex(ALGraph *g,VertexType v,VertexType value)
 {
 	int loc = locateVex(*g,v);
-	if (loc != -1)
+	if (-1 != loc)
 	{
 		g->vertices[loc].data = value;
 		return OK;
@@ -221,31 +228,36 @@ Status putVex(ALGraph *g,VertexType v,VertexType value)
 
 int firstAdjvex(ALGraph g,int v)
 {
-	if (v >= g.vexnum || v < 0)
+	ArcNode *q;
+	return v >= g.vexnum || v < 0?ERROR:(q=g.vertices[v].firstArc) != NULL?q->adjvex:ERROR;
+	/*if (v >= g.vexnum || v < 0)
 	{
-		return -1;
+		return ERROR;
 	}
-	 ArcNode *p = g.vertices[v].firstArc;
-	 if (p)
-	 {
-		 return p->adjvex;
-	 }
-	 return -1;
+	ArcNode *p = g.vertices[v].firstArc;
+	return NULL != p?p->adjvex:ERROR;*/
+	/*if (p)
+	{
+		return p->adjvex;
+	}
+	return ERROR;*/
 }
 
 
 
 int nextAdjvex(ALGraph g,int v,int w)
 {
-	ArcNode *p,*prior = NULL;
+	ArcNode *p = NULL;
+	ArcNode *prior = NULL;
 	ArcNode arc;
 	arc.adjvex = w;
 	p = point(g.vertices[v].firstArc,arc,equalVex,prior);
-	if (!p || !p->nextArc)
+	return !p||!p->nextArc?-1:p->nextArc->adjvex;
+	/*if (!p || !p->nextArc)
 	{
 		return -1;
 	}
-	return p->nextArc->adjvex;
+	return p->nextArc->adjvex;*/
 }
 
 
@@ -283,12 +295,13 @@ Status insertArc(ALGraph *g,VertexType v,VertexType w)
 		inputArc(&arc.info);
 	}
 	listInsert((*g).vertices[i].firstArc,arc);
-	(*g).arcnum++;
+	//无向
 	if ((*g).kind>=2)
 	{
-		arc.adjvex = j;
-		listInsert((*g).vertices[i].firstArc,arc);
+		arc.adjvex = i;
+		listInsert((*g).vertices[j].firstArc,arc);
 	}
+	(*g).arcnum++;
 	return OK;
 }
 
@@ -387,7 +400,7 @@ void listInsert(ArcNode *first,ArcNode e)
 	ArcNode *p = (ArcNode *)malloc(sizeof(ArcNode));
 	if (!p)
 	{
-
+		return;
 	}
 	*p = e;
 	p->nextArc = first;
@@ -539,7 +552,7 @@ void inputArc(InfoType **arc)
 
 void outputArc(InfoType arc)
 {
-	printf_s("%d  ",arc.weight);
+	printf_s("  %d  ",arc.weight);
 }
 
 

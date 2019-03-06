@@ -529,7 +529,7 @@ void inputArc(InfoType **info)
 {
 	char s[MAX_INFO];
 	printf_s("请输入该弧的相关信息(<%d个字符)：",MAX_INFO);
-	gets(s);
+	gets_s(s);
 	int m = strlen(s);
 	if (m)
 	{
