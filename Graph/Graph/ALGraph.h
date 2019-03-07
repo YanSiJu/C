@@ -83,7 +83,7 @@ Status deleteArc(ALGraph *g,VertexType v,VertexType w);
 Status deleteVex(ALGraph *g,VertexType v);
 int locateArc(ArcNode *first,ArcNode a,bool (* equal)(ArcNode,ArcNode));
 void listInsert(ArcNode *first,ArcNode arc);
-Status listDelete(ArcNode **first,int n,ArcNode arc);
+Status listDelete(ArcNode **first,int n,ArcNode *arc);
 void DFSTraverse(ALGraph g,Status(* visit)(VertexType));
 void DFS(ALGraph g,int v);
 void BFSTraverse(ALGraph g,Status(* visit)(VertexType));
@@ -264,6 +264,10 @@ int nextAdjvex(ALGraph g,int v,int w)
 
 void insertVex(ALGraph *g,VertexType v)
 {
+	if (g->vexnum+1 > MAX_VERTEX_NUM)
+	{
+		return;
+	}
 	g->vertices[g->vexnum].data = v;
 	g->vertices[g->vexnum].firstArc = NULL;
 	g->vexnum++;
@@ -320,13 +324,23 @@ Status deleteArc(ALGraph *g,VertexType v,VertexType w)
 	int n = locateArc((*g).vertices[i].firstArc,arc,equalVex);
 	if (-1 != n)
 	{
-		listDelete(&g->vertices[i].firstArc,n,arc);
+		listDelete(&g->vertices[i].firstArc,n,&arc);
 		(*g).arcnum--;
+		//网
+		if (g->kind%2)
+		{
+			if (arc.info)
+			{
+				/*释放弧信息空间*/
+				free(arc.info);
+			}
+		}
+		/*无向，删除对称弧<w,v>*/
 		if ((*g).kind>1)
 		{
 			arc.adjvex = i;
 			n = locateArc((*g).vertices[j].firstArc,arc,equalVex);
-			listDelete(&g->vertices[j].firstArc,n,arc);
+			listDelete(&g->vertices[j].firstArc,n,&arc);
 		}
 		return OK;
 	}
@@ -338,7 +352,7 @@ Status deleteArc(ALGraph *g,VertexType v,VertexType w)
 Status deleteVex(ALGraph *g,VertexType v)
 {
 	int k = locateVex(*g,v);
-	if (k<0)
+	if (-1 == k)
 	{
 		return ERROR;
 	}
@@ -349,18 +363,18 @@ Status deleteVex(ALGraph *g,VertexType v)
 	//有向图（网）
 	if ((*g).kind<2)
 	{
-		for (int i = 0; i < (*g).vexnum; i++)
+		for (int i = 0; i<(*g).vexnum; i++)
 		{
 			deleteArc(g,(*g).vertices[i].data,v);
 		}
 	}
 	ArcNode *p;
-	for (int i = 0; i < g->vexnum; i++)
+	for (int i = 0; i<g->vexnum;i++)
 	{
 		p = (*g).vertices[i].firstArc;
 		while (p)
 		{
-			if (p->adjvex > k)
+			if (p->adjvex>k)
 			{
 				p->adjvex--;
 			}
@@ -369,8 +383,10 @@ Status deleteVex(ALGraph *g,VertexType v)
 	}
 	for (int i = k+1; i < g->vexnum; i++)
 	{
+		//顶点V后面的顶点依次前移
 		g->vertices[i-1] = g->vertices[i];
 	}
+	//顶点数减1
 	g->vexnum--;
 	return OK;
 }
@@ -409,7 +425,7 @@ void listInsert(ArcNode *first,ArcNode e)
 
 
 
-Status listDelete(ArcNode **first,int n,ArcNode arc)
+Status listDelete(ArcNode **first,int n,ArcNode *arc)
 {
 	int count = 1;
 	ArcNode *p = *first;
@@ -422,8 +438,8 @@ Status listDelete(ArcNode **first,int n,ArcNode arc)
 	if(1 == n)
 	{
 		*first = (*first)->nextArc;
-		arc.adjvex = p->adjvex;
-		arc.info = p->info;
+		arc->adjvex = p->adjvex;
+		arc->info = p->info;
 		free(p);
 		return OK;
 	}
@@ -438,8 +454,8 @@ Status listDelete(ArcNode **first,int n,ArcNode arc)
 	}
 	q = p->nextArc;
 	p->nextArc = q->nextArc;
-	arc.adjvex = q->adjvex;
-	arc.info = q->info;
+	arc->adjvex = q->adjvex;
+	arc->info = q->info;
 	free(q);
 	return OK;
 }

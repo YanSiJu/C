@@ -13,24 +13,31 @@
 typedef int Status;
 typedef int VRType;
 //图的种类  {有向图，有向网，无向图，无向网}
-typedef enum{DG,DN,UDG,UDN}   GraphKind;
+typedef enum{DG,DN,UDG,UDN} GraphKind;
+
+
 //顶点信息类型
 typedef struct VertexType
 {
 	//顶点名称
 	char name[MAX_NAME];
 }VertexType;
+
+
 //弧的信息类型
 typedef struct  InfoType
 {
 	char info[MAX_INFO];
 }InfoType;
+
+
 //弧信息结构
 typedef struct ArcCell
 {
 	VRType adj;
 	InfoType *info;
 }ArcCell,AdjMatrix[MAX_VERTEX_NUM][MAX_VERTEX_NUM];
+
 
 //邻接矩阵存储结构
 typedef struct MGraph
@@ -68,6 +75,7 @@ void destroyGraph(MGraph *g);
 void display(MGraph g);
 
 
+
 void createGraph(MGraph *g)
 {
 	switch (g->kind)
@@ -84,12 +92,13 @@ void createGraph(MGraph *g)
 }
 
 
-//创建有向图
+//创建有向图G
 void createDG(MGraph *g)
 {
 	VertexType v,w;
 	int incInfo;
 	printf_s("请输入图的顶点数﹑弧数﹑是否有相关信息（0：无 1：有）");
+	//%*c吃掉回车键
 	scanf_s("%d%d%d%*c",&g->vexnum,&g->arcnum,&incInfo);
 	printf_s("请输入%d个顶点的值(名称<%d个字符)：",g->vexnum,MAX_NAME);
 	//构造顶点向量
@@ -309,9 +318,11 @@ int locateVex(MGraph g,VertexType v)
 
 VertexType getVex(MGraph g,int v)
 {
-	if (v<0 || v>g.vexnum-1)
+	if (v<0 || v>=g.vexnum)
 	{
-		//return
+		VertexType v;
+		strcpy_s(v.name,NULL);
+		return v;
 	}
 	return g.vexs[v];
 }
@@ -323,10 +334,10 @@ Status putVex(MGraph *g,VertexType v,VertexType value)
 	int i = locateVex(*g,v);
 	if (i < 0)
 	{
-		g->vexs[i] = value;
-		return OK;
+		return ERROR;	
 	}
-	return ERROR;
+	g->vexs[i] = value;
+	return OK;	
 }
 
 
@@ -344,6 +355,7 @@ int firstAdjVex(MGraph g,int v)
 		//第一个邻接点
 		if (g.arcs[v][i].adj != j)
 		{
+			//返回该邻接顶点的序号
 			return i;
 		}
 	}
@@ -377,7 +389,7 @@ int nextAdjVex(MGraph g,int v,int w)
 
 void insertVex(MGraph *g,VertexType v)
 {
-	if (g->vexnum+1 < MAX_VERTEX_NUM)
+	if (g->vexnum+1 <= MAX_VERTEX_NUM)
 	{
 		g->vexs[g->vexnum] = v;
 		VRType j = 0;
@@ -385,7 +397,7 @@ void insertVex(MGraph *g,VertexType v)
 		{
 			j = INFINITY;
 		}
-		for (int i = 0; i < g->vexnum; i++)
+		for (int i = 0; i <= g->vexnum; i++)
 		{
 			g->arcs[g->vexnum][i].adj = g->arcs[i][g->vexnum].adj = j;
 			g->arcs[g->vexnum][i].info = g->arcs[i][g->vexnum].info = NULL;
@@ -400,21 +412,23 @@ Status insertArc(MGraph *g,VertexType v,VertexType w)
 {
 	int v1 = locateVex(*g,v);
 	int w1 = locateVex(*g,w);
-	if (v1 < 0 || w1 < 0)
+	if (v1 < 0 || w1 < 0 || v1 == w1)
 	{
 		return ERROR;
 	}
+	//网
 	if (g->kind%2)
 	{
 		printf_s("请输入弧（边）的权值:");
 		scanf_s("%d",g->arcs[v1][w1].adj);
 	}else
 	{
+		//图
 		g->arcs[v1][w1].adj = 1;
 	}
 	printf_s("是否有该弧的相关信息0：无 1：有：");
 	int i;
-	scanf_s("%d",&i);
+	scanf_s("%d%*c",&i);
 	if (1 == i)
 	{
 		inputArc(&g->arcs[v1][w1].info);
@@ -425,6 +439,7 @@ Status insertArc(MGraph *g,VertexType v,VertexType w)
 		g->arcs[w1][v1] = g->arcs[v1][w1];
 	}
 	g->arcnum++;
+	return OK;
 }
 
 
@@ -461,9 +476,9 @@ Status deleteVex(MGraph *g,VertexType v)
 	{
 		for (int j = k+1; j < g->vexnum; j++)
 		{
-			//移动顶点v右边的矩阵元素
+			//移动待删除顶点v右边的矩阵元素
 			g->arcs[i][j-1] = g->arcs[i][j];
-			//移动顶点v下边的矩阵元素
+			//移动待删除顶点v下边的矩阵元素
 			g->arcs[j-1][i] = g->arcs[j][i];
 		}
 	}

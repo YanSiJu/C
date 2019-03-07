@@ -27,7 +27,7 @@ int _tmain(int argc, _TCHAR* argv[])
 
 	printf_s("\n%d   %d\n",INT_MAX,INT_MIN);*/
 
-
+	/*printf_s("%d %d  %d  %d\n\n",DG,DN,UDG,UDN);*/
 
 	int  j,n;
 	char s[3] = "±ß";
