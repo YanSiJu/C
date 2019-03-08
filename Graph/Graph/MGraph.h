@@ -118,14 +118,13 @@ void createDG(MGraph *g)
 			g->arcs[i][j].info = NULL;
 		}
 	}
-	printf_s("请输入%d条弧的弧尾﹑弧头：",g->arcnum);
-	int i,j;
+	printf_s("请输入%d条弧的弧尾﹑弧头：\n",g->arcnum);
 	for (int k = 0; k < g->arcnum; k++)
 	{
 		//%*c吃掉回车符
 		scanf_s("%s%s%*c",v.name,w.name);
-		i = locateVex(*g,v);
-		j = locateVex(*g,w);
+		int i = locateVex(*g,v);
+		int j = locateVex(*g,w);
 		//不存在顶点v或w
 		if (i < 0 || j < 0)
 		{
@@ -170,13 +169,13 @@ void createDN(MGraph *g)
 		}
 	}
 	printf_s("请输入%d条弧的弧尾﹑弧头﹑权值：",g->arcnum);
-	int i,j,weight;
+	int weight = 0;
 	for (int k = 0; k < g->arcnum; k++)
 	{
 		//%*c吃掉回车符
 		scanf_s("%s%s%d%*c",v.name,w.name,&weight);
-		i = locateVex(*g,v);
-		j = locateVex(*g,w);
+		int i = locateVex(*g,v);
+		int j = locateVex(*g,w);
 		//不存在顶点v或w
 		if (i < 0 || j < 0)
 		{
@@ -214,26 +213,26 @@ void createUDN(MGraph *g)
 	{
 		for (int j = 0; j < g->vexnum; j++)
 		{
-			//有向网，不相邻
+			//无向网，不相邻
 			g->arcs[i][j].adj = INFINITY;
 			//无相关信息
 			g->arcs[i][j].info = NULL;
 		}
 	}
 	printf_s("请输入%d条弧的弧尾﹑弧头﹑权值：",g->arcnum);
-	int i,j,weight;
+	int weight;
 	for (int k = 0; k < g->arcnum; k++)
 	{
 		//%*c吃掉回车符
 		scanf_s("%s%s%d%*c",v.name,w.name,&weight);
-		i = locateVex(*g,v);
-		j = locateVex(*g,w);
+		int i = locateVex(*g,v);
+		int j = locateVex(*g,w);
 		//不存在顶点v或w
 		if (i < 0 || j < 0)
 		{
 			continue;
 		}
-		//有向网，相邻
+		//无向网，相邻
 		g->arcs[i][j].adj = weight;
 		//有相关信息
 		if (incInfo)
@@ -267,26 +266,25 @@ void createUDG(MGraph *g)
 	{
 		for (int j = 0; j < g->vexnum; j++)
 		{
-			//有向图，不相邻
+			//无向图，不相邻
 			g->arcs[i][j].adj = 0;
 			//无相关信息
 			g->arcs[i][j].info = NULL;
 		}
 	}
-	printf_s("请输入%d条弧的弧尾﹑弧头：",g->arcnum);
-	int i,j;
+	printf_s("请输入%d条弧的弧尾﹑弧头：\n",g->arcnum);
 	for (int k = 0; k < g->arcnum; k++)
 	{
 		//%*c吃掉回车符
 		scanf_s("%s%s%*c",v.name,w.name);
-		i = locateVex(*g,v);
-		j = locateVex(*g,w);
+		int i = locateVex(*g,v);
+		int j = locateVex(*g,w);
 		//不存在顶点v或w
 		if (i < 0 || j < 0)
 		{
 			continue;
 		}
-		//有向图，相邻
+		//无向图，相邻
 		g->arcs[i][j].adj = 1;
 		//有相关信息
 		if (incInfo)
@@ -297,6 +295,7 @@ void createUDG(MGraph *g)
 		//无向，两个元素存储的信息相同
 		g->arcs[j][i] = g->arcs[i][j];
 	}
+	//无向图
 	g->kind = UDG;
 }
 
