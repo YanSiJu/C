@@ -105,6 +105,7 @@ bool equalVex(ArcNode a,ArcNode b)
 	return a.adjvex == b.adjvex;
 }
 
+//使用邻接表结构，构造图或网G
 void createGraph(ALGraph *g)
 {
 	VertexType v,w;
@@ -115,12 +116,13 @@ void createGraph(ALGraph *g)
 	{
 		strcpy_s(s,"弧");
 	}
-	printf_s("请输入图的顶点数﹑%s数",s);
+	printf_s("请输入图的顶点数﹑%s数:",s);
 	scanf_s("%d%d",&g->vexnum,&g->arcnum);
 	printf_s("请输入%d个顶点的名称(名称<%d个字符)：\n",g->vexnum,MAX_NAME);
 	for (int j = 0; j < g->vexnum; j++)
 	{
 		inputVex(&g->vertices[j].data);
+		g->vertices[j].firstArc = NULL;
 		//scanf_s("%s",g->vertices[j].data.name);
 	}
 	printf_s("请输入%d条%s的",g->arcnum,s);
@@ -135,13 +137,12 @@ void createGraph(ALGraph *g)
 		case UDN:printf_s("顶点1﹑顶点2﹑边的信息");//无向网
 			break;
 	}
-	int i,j;
 	ArcNode arc;
 	for (int k = 0; k < g->arcnum; k++)
 	{
 		scanf_s("%s%s",v.name,w.name);
-		i = locateVex(*g,v);
-		j = locateVex(*g,w);
+		int i = locateVex(*g,v);
+		int j = locateVex(*g,w);
 		if (i<0 || j<0)
 		{
 			continue;
@@ -578,6 +579,7 @@ void display(ALGraph g)
 	ArcNode *p = NULL;
 	char s1[3] = "边";
 	char s2[3] = "-";
+	//有向
 	if (g.kind < 2)
 	{
 		strcpy_s(s1,"弧");
@@ -597,19 +599,24 @@ void display(ALGraph g)
 	printf_s("%d个顶点，依次是：",g.vexnum);
 	for (int i = 0; i < g.vexnum; i++)
 	{
+		//根据顶点信息类型，依次访问每个顶点
 		visit(getVex(g,i));
 	}
 	printf_s("\n%d条%s:\n",g.arcnum,s1);
 	for (int j = 0; j < g.arcnum; j++)
 	{
+		//p指向序号为i的顶点的第一条弧
 		p = g.vertices[j].firstArc;
 		while (p)
 		{
+			//无向或有向中的第一次
 			if (g.kind < 2 || j < p->adjvex)
 			{
 				printf_s("   %s%s%s",g.vertices[j].data.name,s2,g.vertices[p->adjvex].data.name);
+				//网
 				if (g.kind%2)
 				{
+					//输出弧信息
 					outputArc(*p->info);
 				}
 			}

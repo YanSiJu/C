@@ -40,6 +40,7 @@ int _tmain(int argc, _TCHAR* argv[])
 		display(g);
 		printf_s("插入新顶点，请输入新顶点的值：");
 		inputVex(&v1);
+		//在图中插入新顶点v1
 		insertVex(&g,v1);
 		if (g.kind < 2)
 		{
@@ -54,12 +55,14 @@ int _tmain(int argc, _TCHAR* argv[])
 			//有向
 			if (g.kind <= 1)
 			{
-				printf_s("");
-				scanf_s("%s",&j);
+				printf_s("请输入另一顶点的名称（0：弧头  1：弧尾）:");
+				scanf_s("%d",&j);
+				//v2是弧尾
 				if (j)
 				{
 					insertArc(&g,v2,v1);
 				}
+				//v2是弧头
 				else
 				{
 					insertArc(&g,v1,v2);
@@ -71,16 +74,23 @@ int _tmain(int argc, _TCHAR* argv[])
 				insertArc(&g,v1,v2);
 			}
 		}
+		//输出图G
 		display(g);
-		printf_s("删除顶点及相关的%s，请输入带删除顶点的名称：",s);
+		printf_s("删除顶点及相关的%s，请输入待删除顶点的名称：",s);
 		scanf_s("%s",v1.name);
+		//在图G中删除顶点v1
 		deleteVex(&g,v1);
+		//输出图G
 		display(g);
+		//对于最后一个无向网，测试以下函数
 		if (3 == i)
 		{
 			printf_s("修改顶点的值，请输入待修改顶点名称 新值：");
+			//输入待修改顶点名称，以查找待修改的顶点
 			scanf_s("%s",v1.name);
+			//输入顶点的新值，以替代原值
 			inputVex(&v2);
+			//将图G中顶点V1的值改为V2
 			putVex(&g,v1,v2);
 			if (g.kind < 2)
 			{
@@ -89,10 +99,14 @@ int _tmain(int argc, _TCHAR* argv[])
 			{
 				printf_s("删除一条%s，请输入待删除%s的顶点1 顶点2",s,s);
 			}
+			//输入待删除弧的2个顶点的名称
 			scanf_s("%s%s",v1.name,v2.name);
+			//删除图G中由顶点v1指向v2的弧
 			deleteArc(&g,v1,v2);
+			//输出图G
 			display(g);
 		}
+		//销毁图G
 		destroyGraph(&g);
 	}
 	system("pause");

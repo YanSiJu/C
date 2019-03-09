@@ -574,10 +574,77 @@ void inputVex(VertexType *vex)
 }
 
 
-
+//输出邻接矩阵存储结构的图G
 void display(MGraph g)
 {
-
+	char s[7] = "无向网";
+	char s1[3] = "边";
+	switch (g.kind)
+	{
+	case DG:strcpy_s(s,"有向图");
+			strcpy_s(s1,"弧");
+			break;
+	case DN:strcpy_s(s,"有向网");
+		    strcpy_s(s1,"弧");
+		    break;
+	case UDG:strcpy_s(s,"无向图");
+			break;
+	case UDN:;
+	}
+	printf_s("%d个顶点  %d条%s的%s。顶点依次是：",g.vexnum,g.arcnum,s1,s);
+	for (int i = 0; i < g.vexnum; i++)
+	{
+		visit(getVex(g,i));
+	}
+	for (int i = 0; i < g.vexnum; i++)
+	{
+		for (int j = 0; j < g.vexnum; j++)
+		{
+			if (INFINITY == g.arcs[i][j].adj)
+			{
+				printf_s("");
+			}else
+			{
+				printf_s("%4d",g.arcs[i][j].adj);
+			}
+			printf_s("\n");
+		}
+	}
+	printf_s("G.arcs.info:\n");
+	if (g.kind < 2)
+	{
+		printf_s("弧尾  弧头  该%s的信息：\n",s1);
+	}else
+	{
+		printf_s("顶点1  顶点2  该%s的信息：\n",s1);
+	}
+	for (int i = 0; i < g.vexnum; i++)
+	{
+		//有向
+		if (g.kind < 2)
+		{
+			for (int j = 0; j < g.vexnum; j++)
+			{
+				if (g.arcs[i][j].info)
+				{
+					printf_s("%5s%5s",g.vexs[i].name,g.vexs[j].name);
+					outputArc(*g.arcs[i][j].info);
+				}
+			}
+		}else
+		{
+			//无向，输出上三角
+			for (int j = i+1; j < g.vexnum; j++)
+			{
+				if (g.arcs[i][j].info)
+				{
+					printf_s("%5s%5s",g.vexs[i].name,g.vexs[j].name);
+					//输出弧的信息
+					outputArc(*g.arcs[i][j].info);
+				}
+			}
+		}
+	}
 }
 
 
