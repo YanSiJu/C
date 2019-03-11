@@ -594,8 +594,10 @@ void display(MGraph g)
 	printf_s("%d个顶点  %d条%s的%s。顶点依次是：",g.vexnum,g.arcnum,s1,s);
 	for (int i = 0; i < g.vexnum; i++)
 	{
+		//依次访问顶点
 		visit(getVex(g,i));
 	}
+	//输出二维矩阵
 	for (int i = 0; i < g.vexnum; i++)
 	{
 		for (int j = 0; j < g.vexnum; j++)
@@ -611,11 +613,13 @@ void display(MGraph g)
 		}
 	}
 	printf_s("G.arcs.info:\n");
+	//有向
 	if (g.kind < 2)
 	{
 		printf_s("弧尾  弧头  该%s的信息：\n",s1);
 	}else
 	{
+		//无向
 		printf_s("顶点1  顶点2  该%s的信息：\n",s1);
 	}
 	for (int i = 0; i < g.vexnum; i++)
@@ -628,6 +632,7 @@ void display(MGraph g)
 				if (g.arcs[i][j].info)
 				{
 					printf_s("%5s%5s",g.vexs[i].name,g.vexs[j].name);
+					//输出弧的信息
 					outputArc(*g.arcs[i][j].info);
 				}
 			}
