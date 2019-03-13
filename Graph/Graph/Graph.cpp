@@ -11,7 +11,8 @@
 
 void modify(int &n);
 void pointmodify(int **p);
-void input(char *info);
+void input(char **info);
+//void copyString(char src[],char *dest);
 
 int _tmain(int argc, _TCHAR* argv[])
 {
@@ -33,7 +34,8 @@ int _tmain(int argc, _TCHAR* argv[])
 
 	system("title Graph");
 	/*char  *info = "Good!!";
-	input(info);*/
+	input(&info);
+	printf_s("--->%s   %p\n",info,info);*/
 
 	
 
@@ -143,13 +145,25 @@ void modify(int &n)
 }
 
 
-void input(char *info)
+void input(char **info)
 {
-	printf_s("\n---->%s\n",info);
-	info = (char *)malloc(MAX_INFO*sizeof(char));
-	scanf_s("%s",info,sizeof(info));
-	printf_s("\n---->%s\n",info);
+	char s[MAX_INFO];
+	scanf_s("%s",s,sizeof(s));
+	*info = (char *)malloc(strlen(s)*sizeof(char));
+	copyString(s,*info);
+	printf_s("%p\n",*info);
 }
+
+
+//void copyString(char src[],char *dest)
+//{
+//	int i;
+//	for (i = 0; src[i] != '\0'; i++)
+//	{
+//		*(dest+i) = src[i];
+//	}
+//	*(dest+i) = '\0';
+//}
 
 
 

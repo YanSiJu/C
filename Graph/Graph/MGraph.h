@@ -57,8 +57,9 @@ typedef struct MGraph
 void visit(VertexType vex);
 void inputVex(VertexType *vex);
 //void inputArc(InfoType **info);
-void inputArc(InfoType *info);
-void outputArc(InfoType info);
+void inputArc(InfoType **info);
+void copyString(char src[],char *dest);
+void outputArc(InfoType *info);
 void createGraph(MGraph *g);
 void createDG(MGraph *g);
 void createDN(MGraph *g);
@@ -141,7 +142,7 @@ void createDG(MGraph *g)
 		if (incInfo)
 		{
 			//动态生成存储空间，存储弧的信息
-			inputArc(g->arcs[i][j].info);
+			inputArc(&g->arcs[i][j].info);
 		}
 	}
 	g->kind = DG;
@@ -181,7 +182,6 @@ void createDN(MGraph *g)
 		//%*c吃掉回车符
 		scanf_s("%s%s%d%*c",v.name,sizeof(v.name),w.name,sizeof(w.name),&weight);
 		/*scanf_s("%d",&weight);*/
-		printf_s("%s   %s  %d\n",v.name,w.name,weight);
 		int i = locateVex(*g,v);
 		int j = locateVex(*g,w);
 		//不存在顶点v或w
@@ -195,9 +195,7 @@ void createDN(MGraph *g)
 		if (incInfo)
 		{
 			//动态生成存储空间，存储弧的信息
-			/*void inputArc(InfoType info);*/
-			/*InfoType  *info;*/
-			inputArc(g->arcs[i][j].info);
+			inputArc(&g->arcs[i][j].info);
 		}
 	}
 	g->kind = DN;
@@ -234,7 +232,6 @@ void createUDN(MGraph *g)
 	for (int k = 0; k < g->arcnum; k++)
 	{
 		//%*c吃掉回车符
-		/*scanf_s("%s%s%d%*c",v.name,w.name,&weight);*/
 		scanf_s("%s%s%d%*c",v.name,sizeof(v.name),w.name,sizeof(w.name),&weight);
 		int i = locateVex(*g,v);
 		int j = locateVex(*g,w);
@@ -249,7 +246,7 @@ void createUDN(MGraph *g)
 		if (incInfo)
 		{
 			//动态生成存储空间，存储弧的信息
-			inputArc(g->arcs[i][j].info);
+			inputArc(&g->arcs[i][j].info);
 		}
 		//无向，两个元素存储的信息相同
 		g->arcs[j][i] = g->arcs[i][j];
@@ -287,7 +284,6 @@ void createUDG(MGraph *g)
 	for (int k = 0; k < g->arcnum; k++)
 	{
 		//%*c吃掉回车符
-		/*scanf_s("%s%s%*c",v.name,w.name);*/
 		scanf_s("%s%s%*c",v.name,sizeof(v.name),w.name,sizeof(w.name));
 		int i = locateVex(*g,v);
 		int j = locateVex(*g,w);
@@ -302,7 +298,7 @@ void createUDG(MGraph *g)
 		if (incInfo)
 		{
 			//动态生成存储空间，存储弧的信息
-			inputArc(g->arcs[i][j].info);
+			inputArc(&g->arcs[i][j].info);
 		}
 		//无向，两个元素存储的信息相同
 		g->arcs[j][i] = g->arcs[i][j];
@@ -332,9 +328,6 @@ VertexType getVex(MGraph g,int v)
 	if (v<0 || v>=g.vexnum)
 	{
 		exit(0);
-		/*VertexType v;
-		strcpy_s(v.name,"");
-		return v;*/
 	}
 	return g.vexs[v];
 }
@@ -433,7 +426,6 @@ Status insertArc(MGraph *g,VertexType v,VertexType w)
 	{
 		printf_s("请输入弧（边）的权值:");
 		scanf_s("%d%*c",&g->arcs[v1][w1].adj);
-		/*scanf_s("%d%*c",g->arcs[v1][w1].adj,sizeof(g->arcs[v1][w1].adj));*/
 	}else
 	{
 		//图
@@ -444,7 +436,7 @@ Status insertArc(MGraph *g,VertexType v,VertexType w)
 	scanf_s("%d%*c",&i);
 	if (1 == i)
 	{
-		inputArc(g->arcs[v1][w1].info);
+		inputArc(&g->arcs[v1][w1].info);
 	}
 	//无向
 	if (g->kind>1)
@@ -536,9 +528,8 @@ Status deleteArc(MGraph *g,VertexType v,VertexType w)
 			g->arcs[w1][v1] = g->arcs[v1][w1];
 		}
 		g->arcnum--;
-		return OK;
 	}
-	return ERROR;
+	return OK;
 }
 
 
@@ -553,24 +544,29 @@ void destroyGraph(MGraph *g)
 
 
 
-void inputArc(InfoType *info)
+void inputArc(InfoType **info)
 {
-	/*char s[MAX_INFO];*/
 	printf_s("请输入该弧的相关信息(<%d个字符)：",MAX_INFO);
-	info = (char *)malloc(MAX_INFO*sizeof(char));
-	scanf_s("%s",info,sizeof(info));
-	//int m = strlen(s);
-	//if (m)
-	//{
-	//	*info = (char *)malloc(MAX_INFO*sizeof(char));
-	//	/*char info[10];*/
-	//	strcpy_s(info,s);
-	//}
+	char s[MAX_INFO+1];
+	scanf_s("%[^\n]",s,sizeof(s));
+
+	*info = (char *)malloc((strlen(s)+1)*sizeof(char));
+	copyString(s,*info);
 }
 
 
+void copyString(char src[],char *dest)
+{
+	int i;
+	for (i = 0; src[i] != '\0'; i++)
+	{
+		*(dest+i) = src[i];
+	}
+	*(dest+i) = '\0';
+}
 
-void outputArc(InfoType info)
+
+void outputArc(InfoType *info)
 {
 	printf_s("%s\n",info);
 }
@@ -622,7 +618,7 @@ void display(MGraph g)
 		{
 			if (INFINITY == g.arcs[i][j].adj)
 			{
-				printf_s("∞  ");
+				printf_s("∞ ");
 			}else
 			{
 				printf_s("%4d  ",g.arcs[i][j].adj);
@@ -652,7 +648,7 @@ void display(MGraph g)
 				{
 					printf_s("%5s%5s  ",g.vexs[i].name,g.vexs[j].name);
 					//输出弧的信息
-					outputArc(*g.arcs[i][j].info);
+					outputArc(g.arcs[i][j].info);
 				}
 			}
 		}else
@@ -664,7 +660,7 @@ void display(MGraph g)
 				{
 					printf_s("%5s%5s",g.vexs[i].name,g.vexs[j].name);
 					//输出弧的信息
-					outputArc(*g.arcs[i][j].info);
+					outputArc(g.arcs[i][j].info);
 				}
 			}
 		}
