@@ -68,8 +68,8 @@ void createUDG(MGraph *g);
 int locateVex(MGraph g,VertexType v);
 VertexType getVex(MGraph g,int v);
 Status putVex(MGraph *g,VertexType v,VertexType value);
-int firstAdjVex(MGraph g,int v);
-int nextAdjVex(MGraph g,int v,int w);
+int firstAdjvex(MGraph g,int v);
+int nextAdjvex(MGraph g,int v,int w);
 void insertVex(MGraph *g,VertexType v);
 Status insertArc(MGraph *g,VertexType v,VertexType w);
 Status deleteVex(MGraph *g,VertexType v);
@@ -103,7 +103,7 @@ void createDG(MGraph *g)
 {
 	VertexType v,w;
 	int incInfo;
-	printf_s("请输入图的顶点数﹑弧数﹑是否有相关信息（0：无 1：有）");
+	printf_s("请输入图的顶点数﹑弧数﹑是否有相关信息（0：无 1：有）：");
 	//%*c吃掉回车键
 	scanf_s("%d%d%d%*c",&g->vexnum,&g->arcnum,&incInfo);
 	printf_s("请输入%d个顶点的值(名称<%d个字符)：",g->vexnum,MAX_NAME);
@@ -207,7 +207,7 @@ void createUDN(MGraph *g)
 {
 	VertexType v,w;
 	int incInfo;
-	printf_s("请输入图的顶点数﹑弧数﹑是否有相关信息（0：无 1：有）");
+	printf_s("请输入图的顶点数﹑弧数﹑是否有相关信息（0：无 1：有）：");
 	scanf_s("%d%d%d%*c",&g->vexnum,&g->arcnum,&incInfo);
 	printf_s("请输入%d个顶点的值(名称<%d个字符)：",g->vexnum,MAX_NAME);
 	//构造顶点向量
@@ -227,7 +227,7 @@ void createUDN(MGraph *g)
 			g->arcs[i][j].info = NULL;
 		}
 	}
-	printf_s("请输入%d条弧的弧尾﹑弧头﹑权值：",g->arcnum);
+	printf_s("请输入%d条弧的顶点1﹑顶点2﹑权值：",g->arcnum);
 	int weight;
 	for (int k = 0; k < g->arcnum; k++)
 	{
@@ -260,7 +260,7 @@ void createUDG(MGraph *g)
 {
 	VertexType v,w;
 	int incInfo;
-	printf_s("请输入图的顶点数﹑弧数﹑是否有相关信息（0：无 1：有）");
+	printf_s("请输入图的顶点数﹑弧数﹑是否有相关信息（0：无 1：有）：");
 	scanf_s("%d%d%d%*c",&g->vexnum,&g->arcnum,&incInfo);
 	printf_s("请输入%d个顶点的值(名称<%d个字符)：",g->vexnum,MAX_NAME);
 	//构造顶点向量
@@ -280,7 +280,7 @@ void createUDG(MGraph *g)
 			g->arcs[i][j].info = NULL;
 		}
 	}
-	printf_s("请输入%d条弧的弧尾﹑弧头：\n",g->arcnum);
+	printf_s("请输入%d条弧的顶点1﹑顶点2：",g->arcnum);
 	for (int k = 0; k < g->arcnum; k++)
 	{
 		//%*c吃掉回车符
@@ -347,7 +347,7 @@ Status putVex(MGraph *g,VertexType v,VertexType value)
 
 
 
-int firstAdjVex(MGraph g,int v)
+int firstAdjvex(MGraph g,int v)
 {
 	VRType j = 0;
 	if (g.kind%2)
@@ -369,7 +369,7 @@ int firstAdjVex(MGraph g,int v)
 
 
 
-int nextAdjVex(MGraph g,int v,int w)
+int nextAdjvex(MGraph g,int v,int w)
 {
 	//顶点关系类型：图
 	VRType j = 0;
@@ -483,6 +483,12 @@ Status deleteVex(MGraph *g,VertexType v)
 		{
 			//移动待删除顶点v右边的矩阵元素
 			g->arcs[i][j-1] = g->arcs[i][j];
+		}
+	}
+	for (int i = 0; i < g->vexnum; i++)
+	{
+		for (int j = k+1; j < g->vexnum; j++)
+		{
 			//移动待删除顶点v下边的矩阵元素
 			g->arcs[j-1][i] = g->arcs[j][i];
 		}
@@ -568,7 +574,7 @@ void copyString(char src[],char *dest)
 
 void outputArc(InfoType *info)
 {
-	printf_s("%s\n",info);
+	printf_s("  %s\n",info);
 }
 
 
@@ -646,7 +652,7 @@ void display(MGraph g)
 			{
 				if (g.arcs[i][j].info)
 				{
-					printf_s("%5s%5s  ",g.vexs[i].name,g.vexs[j].name);
+					printf_s("%5s%5s    ",g.vexs[i].name,g.vexs[j].name);
 					//输出弧的信息
 					outputArc(g.arcs[i][j].info);
 				}

@@ -118,10 +118,10 @@ int _tmain(int argc, _TCHAR* argv[])
 			putVex(&g,v1,v2);
 			if (g.kind < 2)
 			{
-				printf_s("É¾³ýÒ»Ìõ%s£¬ÇëÊäÈë´ýÉ¾³ý%sµÄ»¡Î² »¡Í·",s,s);
+				printf_s("É¾³ýÒ»Ìõ%s£¬ÇëÊäÈë´ýÉ¾³ý%sµÄ»¡Î² »¡Í·£º",s,s);
 			}else
 			{
-				printf_s("É¾³ýÒ»Ìõ%s£¬ÇëÊäÈë´ýÉ¾³ý%sµÄ¶¥µã1 ¶¥µã2",s,s);
+				printf_s("É¾³ýÒ»Ìõ%s£¬ÇëÊäÈë´ýÉ¾³ý%sµÄ¶¥µã1 ¶¥µã2£º",s,s);
 			}
 			//ÊäÈë´ýÉ¾³ý»¡µÄ2¸ö¶¥µãµÄÃû³Æ
 			scanf_s("%s%s",v1.name,sizeof(v1.name),v2.name,sizeof(v2.name));
