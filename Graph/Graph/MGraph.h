@@ -572,6 +572,7 @@ void copyString(char src[],char *dest)
 }
 
 
+
 void outputArc(InfoType *info)
 {
 	printf_s("  %s\n",info);

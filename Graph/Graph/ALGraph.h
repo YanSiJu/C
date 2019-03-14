@@ -84,7 +84,7 @@ Status deleteVex(ALGraph *g,VertexType v);
 int locateArc(ArcNode *first,ArcNode a,bool (* equal)(ArcNode,ArcNode));
 void listInsert(ArcNode *first,ArcNode arc);
 Status listDelete(ArcNode **first,int n,ArcNode *arc);
-Status visit(VertexType v);
+void visit(VertexType v);
 void inputVex(VertexType *v);
 ArcNode *point(ArcNode *arc,ArcNode e,bool (* equal)(ArcNode,ArcNode),ArcNode *prior);
 void inputArc(InfoType **arc);
@@ -465,10 +465,9 @@ void destroyGraph(ALGraph *g)
 
 
 
-Status visit(VertexType v)
+void visit(VertexType v)
 {
 	printf_s("%s  ",v.name);
-	return OK;
 }
 
 
