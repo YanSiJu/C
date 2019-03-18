@@ -90,6 +90,8 @@
     <ClInclude Include="Traverse.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="DIJ.cpp" />
+    <ClCompile Include="Floyd.cpp" />
     <ClCompile Include="Graph.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
