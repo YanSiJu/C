@@ -4,6 +4,8 @@
 
 #include "stdafx.h"
 #include"MGraph.h"
+#include"ShortestPathDIJ.h"
+#include"MakePath.h"
 #define Graph MGraph
 
 //#include"ALGraph.h"
@@ -53,85 +55,128 @@ int _tmain(int argc, _TCHAR* argv[])
 	}
 	printf_s("\n");*/
 
-	int  j,n;
-	char s[3] = "边";
-	Graph g;
-	VertexType v1,v2;
-	printf_s("请依次选择 有向图，有向网，无向图，无向网\n");
-	for (int i = 0; i < 4; i++)
+	//int  j,n;
+	//char s[3] = "边";
+	//Graph g;
+	//VertexType v1,v2;
+	//printf_s("请依次选择 有向图，有向网，无向图，无向网\n");
+	//for (int i = 0; i < 4; i++)
+	//{
+	//	createGraph(&g);
+	//	display(g);
+	//	printf_s("插入新顶点，请输入新顶点的值：");
+	//	inputVex(&v1);
+	//	//在图中插入新顶点v1
+	//	insertVex(&g,v1);
+	//	if (g.kind < 2)
+	//	{
+	//		strcpy_s(s,"弧");
+	//	}
+	//	printf_s("插入与新顶点有关的%s,请输入%s数：",s,s);
+	//	scanf_s("%d",&n);
+	//	for (int k = 0; k < n; k++)
+	//	{
+	//		printf_s("请输入另一顶点的名称：");
+	//		scanf_s("%s",v2.name,sizeof(v2.name));
+	//		//有向
+	//		if (g.kind <= 1)
+	//		{
+	//			printf_s("请输入另一顶点的方向（0：弧头  1：弧尾）:");
+	//			scanf_s("%d%*c",&j);
+	//			//v2是弧尾
+	//			if (j)
+	//			{
+	//				insertArc(&g,v2,v1);
+	//			}
+	//			//v2是弧头
+	//			else
+	//			{
+	//				insertArc(&g,v1,v2);
+	//			}
+	//		}
+	//		//无向
+	//		else
+	//		{
+	//			insertArc(&g,v1,v2);
+	//		}
+	//	}
+	//	//输出图G
+	//	display(g);
+	//	printf_s("删除顶点及相关的%s，请输入待删除顶点的名称：",s);
+	//	scanf_s("%s",v1.name,sizeof(v1.name));
+	//	//在图G中删除顶点v1
+	//	deleteVex(&g,v1);
+	//	//输出图G
+	//	display(g);
+	//	//对于最后一个无向网，测试以下函数
+	//	if (3 == i)
+	//	{
+	//		printf_s("修改顶点的值，请输入待修改顶点名称 新值：");
+	//		//输入待修改顶点名称，以查找待修改的顶点
+	//		scanf_s("%s",v1.name,sizeof(v1.name));
+	//		//输入顶点的新值，以替代原值
+	//		inputVex(&v2);
+	//		//将图G中顶点V1的值改为V2
+	//		putVex(&g,v1,v2);
+	//		if (g.kind < 2)
+	//		{
+	//			printf_s("删除一条%s，请输入待删除%s的弧尾 弧头：",s,s);
+	//		}else
+	//		{
+	//			printf_s("删除一条%s，请输入待删除%s的顶点1 顶点2：",s,s);
+	//		}
+	//		//输入待删除弧的2个顶点的名称
+	//		scanf_s("%s%s",v1.name,sizeof(v1.name),v2.name,sizeof(v2.name));
+	//		//删除图G中由顶点v1指向v2的弧
+	//		deleteArc(&g,v1,v2);
+	//		//输出图G
+	//		display(g);
+	//	}
+	//	//销毁图G
+	//	destroyGraph(&g);
+	//}
+
+
+
+
+
+	//DIJ算法
+
+    MGraph g;
+	//二维数组，路径矩阵
+	PathMatrix p;
+	//一维数组，最短距离表
+	ShortPathTable d;
+	bool *path;
+
+	int k = 0;
+	createFromFile(&g,"graph.txt",0);
+	path = (bool *)malloc(g.vexnum * sizeof(bool));
+	display(g);
+	shortestPathDIJ(g,k,p,d);
+	printf_s("最短路径数组p[i][j]：\n");
+	for (int i = 0; i < g.vexnum; i++)
 	{
-		createGraph(&g);
-		display(g);
-		printf_s("插入新顶点，请输入新顶点的值：");
-		inputVex(&v1);
-		//在图中插入新顶点v1
-		insertVex(&g,v1);
-		if (g.kind < 2)
+		for (int j = 0; j < g.vexnum; j++)
 		{
-			strcpy_s(s,"弧");
+			printf_s("%d  ",p[i][j]);
 		}
-		printf_s("插入与新顶点有关的%s,请输入%s数：",s,s);
-		scanf_s("%d",&n);
-		for (int k = 0; k < n; k++)
+		printf_s("\n");
+	}
+
+	printf_s("%s到各顶点的最短路径长度和依次经过的顶点:\n",g.vexs[k].name);
+	for (int i = 0; i < g.vexnum; i++)
+	{
+		if (i != k && d[i] < INFINITY)
 		{
-			printf_s("请输入另一顶点的名称：");
-			scanf_s("%s",v2.name,sizeof(v2.name));
-			//有向
-			if (g.kind <= 1)
+			printf_s("%s--->%s:%d  ",g.vexs[k].name,g.vexs[i].name,d[i]);
+			printf_s("%s--->",g.vexs[k].name);
+			for (int j = 0; j < g.vexnum; j++)
 			{
-				printf_s("请输入另一顶点的方向（0：弧头  1：弧尾）:");
-				scanf_s("%d%*c",&j);
-				//v2是弧尾
-				if (j)
-				{
-					insertArc(&g,v2,v1);
-				}
-				//v2是弧头
-				else
-				{
-					insertArc(&g,v1,v2);
-				}
+				path[j] = p[i][j];
 			}
-			//无向
-			else
-			{
-				insertArc(&g,v1,v2);
-			}
+			MakePath(g,path,k,i);
 		}
-		//输出图G
-		display(g);
-		printf_s("删除顶点及相关的%s，请输入待删除顶点的名称：",s);
-		scanf_s("%s",v1.name,sizeof(v1.name));
-		//在图G中删除顶点v1
-		deleteVex(&g,v1);
-		//输出图G
-		display(g);
-		//对于最后一个无向网，测试以下函数
-		if (3 == i)
-		{
-			printf_s("修改顶点的值，请输入待修改顶点名称 新值：");
-			//输入待修改顶点名称，以查找待修改的顶点
-			scanf_s("%s",v1.name,sizeof(v1.name));
-			//输入顶点的新值，以替代原值
-			inputVex(&v2);
-			//将图G中顶点V1的值改为V2
-			putVex(&g,v1,v2);
-			if (g.kind < 2)
-			{
-				printf_s("删除一条%s，请输入待删除%s的弧尾 弧头：",s,s);
-			}else
-			{
-				printf_s("删除一条%s，请输入待删除%s的顶点1 顶点2：",s,s);
-			}
-			//输入待删除弧的2个顶点的名称
-			scanf_s("%s%s",v1.name,sizeof(v1.name),v2.name,sizeof(v2.name));
-			//删除图G中由顶点v1指向v2的弧
-			deleteArc(&g,v1,v2);
-			//输出图G
-			display(g);
-		}
-		//销毁图G
-		destroyGraph(&g);
 	}
 	system("pause");
 	return 0;

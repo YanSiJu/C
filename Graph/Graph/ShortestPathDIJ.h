@@ -1,4 +1,4 @@
-#include"MGraph.h"
+
 
 
 //路径矩阵，二维数组
@@ -18,6 +18,7 @@ void shortestPathDIJ(MGraph g,int u,PathMatrix p,ShortPathTable D)
 	bool final[MAX_VERTEX_NUM];
 	for (int v = 0; v < g.vexnum; v++)
 	{
+		final[v] = false;
 		//D[]存放u到v的最短距离，初值为u到v的直接距离
 		D[v] = g.arcs[u][v].adj;
 		for (int w = 0; w < g.vexnum; w++)
@@ -31,7 +32,7 @@ void shortestPathDIJ(MGraph g,int u,PathMatrix p,ShortPathTable D)
 			p[v][u] = p[v][v] = true;
 		}
 	}
-	int v;
+	int v = 0;
 	//u到u距离为0
 	D[u] = 0;
 	//将u并入s集

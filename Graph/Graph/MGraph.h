@@ -1,4 +1,4 @@
-#include<stdio.h>
+ #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
 #define INFINITY INT_MAX
@@ -76,6 +76,101 @@ Status deleteVex(MGraph *g,VertexType v);
 Status deleteArc(MGraph *g,VertexType v,VertexType w);
 void destroyGraph(MGraph *g);
 void display(MGraph g);
+void createFromFile(MGraph *g,char *filename,int incinfo);
+void inputArcFromFile(FILE *f,InfoType *info);
+void inputVexFromFile(FILE *f,VertexType *vex);
+
+
+void createFromFile(MGraph *g,char *filename,int incinfo)
+{
+	//顶点关系类型：图
+	VRType w = 0;
+	VertexType v1,v2;
+	FILE *f;
+	//打开数据文件
+	fopen_s(&f,filename,"r");
+	//输入图G的类型
+	fscanf_s(f,"%d",&g->kind);
+	//网
+	if (g->kind%2)
+	{
+		w = INFINITY;
+	}
+	//输入顶点数
+	fscanf_s(f,"%d",&g->vexnum);
+	for (int i = 0; i < g->vexnum; i++)
+	{
+		inputVexFromFile(f,&g->vexs[i]);
+	}	
+	//输入弧数
+	fscanf_s(f,"%d",&g->arcnum);
+	/*初始化二维邻接矩阵*/
+	for (int i = 0; i < g->vexnum; i++)
+	{
+		for (int j = 0; j < g->vexnum; j++)
+		{
+			//不相邻
+			g->arcs[i][j].adj = w;
+			//没有信息
+			g->arcs[i][j].info = NULL;
+		}
+	}
+	//图
+	if (!(g->kind%2))
+	{
+		w = 1;
+	}
+	//对于所有弧
+	for (int k = 0; k < g->arcnum; k++)
+	{
+		//输入弧尾﹑弧头的名称
+		fscanf_s(f,"%s%s",v1.name, sizeof(v1.name),v2.name,sizeof(v2.name));
+		//网
+		if (g->kind%2)
+		{
+			//输入权植
+			fscanf_s(f,"%d",&w);
+		}
+		//弧尾的序号
+		int i = locateVex(*g,v1);
+		//弧头的序号
+		int j = locateVex(*g,v2);
+		//权值
+		g->arcs[i][j].adj = w;
+		//有相关信息
+		if (incinfo)
+		{
+			inputArcFromFile(f,g->arcs[i][j].info);
+		}
+		//无向
+		if (g->kind>1)
+		{
+			g->arcs[j][i] = g->arcs[i][j];
+		}		
+	}
+}
+
+
+
+void inputArcFromFile(FILE *f,InfoType *info)
+{
+	//临时存储空间
+	char s[MAX_INFO];
+	//从文件输入字符串
+	fgets(s,MAX_INFO,f);
+	//动态生成信息存储空间
+	info = (char *)malloc((strlen(s)+1)*sizeof(char));
+	//复制s到arc
+	/*strcpy_s(info,s);*/
+}
+
+
+
+void inputVexFromFile(FILE *f,VertexType *ver)
+{
+	//从文件输入顶点信息
+	fscanf_s(f,"%s",ver->name,sizeof(ver->name));
+}
 
 
 
