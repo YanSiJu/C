@@ -77,7 +77,7 @@ Status deleteArc(MGraph *g,VertexType v,VertexType w);
 void destroyGraph(MGraph *g);
 void display(MGraph g);
 void createFromFile(MGraph *g,char *filename,int incinfo);
-void inputArcFromFile(FILE *f,InfoType *info);
+void inputArcFromFile(FILE *f,InfoType **info);
 void inputVexFromFile(FILE *f,VertexType *vex);
 
 
@@ -140,7 +140,7 @@ void createFromFile(MGraph *g,char *filename,int incinfo)
 		//有相关信息
 		if (incinfo)
 		{
-			inputArcFromFile(f,g->arcs[i][j].info);
+			inputArcFromFile(f,&g->arcs[i][j].info);
 		}
 		//无向
 		if (g->kind>1)
@@ -152,16 +152,17 @@ void createFromFile(MGraph *g,char *filename,int incinfo)
 
 
 
-void inputArcFromFile(FILE *f,InfoType *info)
+void inputArcFromFile(FILE *f,InfoType **info)
 {
 	//临时存储空间
 	char s[MAX_INFO];
 	//从文件输入字符串
 	fgets(s,MAX_INFO,f);
 	//动态生成信息存储空间
-	info = (char *)malloc((strlen(s)+1)*sizeof(char));
+	*info = (char *)malloc((strlen(s)+1)*sizeof(char));
 	//复制s到arc
-	/*strcpy_s(info,s);*/
+	copyString(s,*info);
+	//strcpy_s(info,s);
 }
 
 

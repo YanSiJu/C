@@ -3,8 +3,9 @@
 
 
 #include "stdafx.h"
-#include"MGraph.h"
-#include"ShortestPathDIJ.h"
+//#include"MGraph.h"
+//#include"ShortestPathDIJ.h"
+#include"ShortestPathFloyd.h"
 #include"MakePath.h"
 #define Graph MGraph
 
@@ -140,44 +141,97 @@ int _tmain(int argc, _TCHAR* argv[])
 
 
 
-	//DIJ算法
+	//Dijkstra算法
 
+ //   MGraph g;
+	////二维数组，路径矩阵
+	//PathMatrix p;
+	////一维数组，最短距离表
+	//ShortPathTable d;
+	//bool *path;
+
+	//int k = 0;
+	//createFromFile(&g,"graph.txt",0);
+	//path = (bool *)malloc(g.vexnum * sizeof(bool));
+	//display(g);
+	//shortestPathDIJ(g,k,p,d);
+	//printf_s("最短路径数组p[i][j]：\n");
+	//for (int i = 0; i < g.vexnum; i++)
+	//{
+	//	for (int j = 0; j < g.vexnum; j++)
+	//	{
+	//		printf_s("%d  ",p[i][j]);
+	//	}
+	//	printf_s("\n");
+	//}
+
+	//printf_s("%s到各顶点的最短路径长度和依次经过的顶点:\n",g.vexs[k].name);
+	//for (int i = 0; i < g.vexnum; i++)
+	//{
+	//	if (i != k && d[i] < INFINITY)
+	//	{
+	//		printf_s("%s--->%s:%d  ",g.vexs[k].name,g.vexs[i].name,d[i]);
+	//		printf_s("%s--->",g.vexs[k].name);
+	//		for (int j = 0; j < g.vexnum; j++)
+	//		{
+	//			path[j] = p[i][j];
+	//		}
+	//		MakePath(g,path,k,i);
+	//	}
+	//}
+
+
+
+	//Floyd算法
     MGraph g;
-	//二维数组，路径矩阵
+	//三维数组
 	PathMatrix p;
-	//一维数组，最短距离表
-	ShortPathTable d;
+	//二维数组
+	DistanceMatrix d;
 	bool *path;
-
-	int k = 0;
-	createFromFile(&g,"graph.txt",0);
-	path = (bool *)malloc(g.vexnum * sizeof(bool));
+	createFromFile(&g,"graph-1.txt",0);
+	for (int i = 0; i < g.vexnum; i++)
+	{
+		g.arcs[i][i].adj = 0;
+	}
+	//输出有向网G
 	display(g);
-	shortestPathDIJ(g,k,p,d);
-	printf_s("最短路径数组p[i][j]：\n");
+	shortestPathFloyd(g,p,d);
+	printf_s("d矩阵：\n");
 	for (int i = 0; i < g.vexnum; i++)
 	{
 		for (int j = 0; j < g.vexnum; j++)
 		{
-			printf_s("%d  ",p[i][j]);
+			if (INFINITY == d[i][j])
+			{
+				printf_s("∞");
+			}else
+			{
+				printf_s("%4d",d[i][j]);
+			}
 		}
 		printf_s("\n");
 	}
-
-	printf_s("%s到各顶点的最短路径长度和依次经过的顶点:\n",g.vexs[k].name);
+	path = (bool *)malloc(g.vexnum*sizeof(bool));
 	for (int i = 0; i < g.vexnum; i++)
 	{
-		if (i != k && d[i] < INFINITY)
+		for (int j = 0; j < g.vexnum; j++)
 		{
-			printf_s("%s--->%s:%d  ",g.vexs[k].name,g.vexs[i].name,d[i]);
-			printf_s("%s--->",g.vexs[k].name);
-			for (int j = 0; j < g.vexnum; j++)
+			if (i != j)
 			{
-				path[j] = p[i][j];
+				printf_s("%s-->%s:p[%d][%d][]=",g.vexs[i].name,g.vexs[j].name,i,j);
+				for (int k = 0; k < g.vexnum; k++)
+				{
+					printf_s("%2d",p[i][j][k]);
+					path[k] = p[i][j][k];
+				}
+				printf_s("  最短距离 = %2d  ",d[i][j]);
+				printf_s("经过的顶点：");
+				MakePath(g,path,i,j);
 			}
-			MakePath(g,path,k,i);
 		}
 	}
+
 	system("pause");
 	return 0;
 }
