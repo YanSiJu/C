@@ -1,5 +1,5 @@
 void  write(User *head);
-//write(head)
+		//write(head)
         char  FILE_Name[30] = "UserInfomation.txt";
 
 void  write(User *head)

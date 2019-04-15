@@ -6,8 +6,7 @@ void  Station_Query(char   Name[MAX_NAME+1]);
 void  skip4(MGraph G);
 void  Line_Query(int Name);
 void  Tacke_Bus_Strategy(int start,int end);
-
-        void(*Menu)();
+void(*Menu)();
 
   //菜单
 void  Bus_Query(void(*menu)())
@@ -89,12 +88,12 @@ void  Bus_Query(void(*menu)())
                         }
 
 
-                    x = a[0] ;
+                    x = a[0];
                     printf("\n注:长沙大学 →德雅路口(132 136 901)：表示 长沙大学 →德雅路口 可乘坐132 136 901路公交车\n");
                     printf("%s",G.vexs[x].name);
                     for(j = 0; j < size - 1;j++)
                     {
-                           x = a[j+1];
+                            x = a[j+1];
                             printf(" →%s(",G.vexs[x].name);
                             for(q = City_Buses; q; q = q->next)
                             {
@@ -145,7 +144,6 @@ void  Bus_Query(void(*menu)())
                                     break;
                             }
                        }
-
                        Tacke_Bus_Strategy(start,end);
                        skip4(G);
                        break;

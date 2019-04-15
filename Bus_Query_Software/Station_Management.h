@@ -54,7 +54,7 @@ void  Station_Management(MGraph  *G,void main_menu(MGraph *))
                                 scanf("%s%d",&V.name,&Bus_Num);
                                 Station_Add(G,V);       //循环调用Station_Add(G,V)函数增加站点
 
-                                    //,存储停靠在该站点的公交车
+                                    //存储停靠在该站点的公交车
                                 G->vexs[G->vexnum-1].Buses =(int *)malloc(Bus_Num*sizeof(int));
                                 if(!G->vexs[G->vexnum-1].Buses)
                                     return;
@@ -64,10 +64,8 @@ void  Station_Management(MGraph  *G,void main_menu(MGraph *))
                                 for(int j = 0; j < Bus_Num; j++)        //输入停靠在该站点的公交车
                                     scanf("%d",&G->vexs[G->vexnum-1].Buses[j]);
                             }
-
                             Graph_Write(G);     //将信息存入文件
                             skip(G,main_menu);      //调用跳转函数
-
                             break;
 
                 case 2:printf("请输入欲删除的站点数目:");      //删除站点
@@ -82,10 +80,8 @@ void  Station_Management(MGraph  *G,void main_menu(MGraph *))
                            Station_Delete(G,V);     //调用Station_Delete(G,V)函数删除站点
                            fflush(stdin);
                        }
-
                        Graph_Write(G);     //将信息存入文件
                        skip(G,main_menu);      //调用跳转函数
-
                        break;
 
                 case 4:Check_Station(*G);        //查看站点信息

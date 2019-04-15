@@ -17,7 +17,7 @@ typedef char InfoType;
 typedef enum{DG,DN,UDG,UDN} GraphKind;
 
 
-//顶点信息类型
+//顶点类型
 typedef struct VertexType
 {
 	//顶点名称
