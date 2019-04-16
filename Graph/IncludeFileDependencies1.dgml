@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DirectedGraph xmlns="http://schemas.microsoft.com/vs/2009/dgml">
+  <Nodes>
+    <Node Id="(@1 @10)" Category="CodeSchema_ProjectItem" Bounds="20,208.006699543349,103.618899847783,26.0022331811163" FilePath="$(VsSolution)\graph\targetver.h" Label="targetver.h" />
+    <Node Id="(@1 @11)" Category="CodeSchema_ProjectItem" Bounds="20,152.004466362233,97.5022331811163,26.0022331811163" FilePath="$(VsSolution)\graph\allpaths.h" Label="AllPaths.h" />
+    <Node Id="(@1 @12)" Category="CodeSchema_ProjectItem" Bounds="129.312233181116,40,85.8588998477829,26.0022331811163" FilePath="$(VsSolution)\graph\stdafx.h" Label="stdafx.h" />
+    <Node Id="(@1 @13)" Category="CodeSchema_ProjectItem" Bounds="362.536699543349,40,94.2455665144496,26.0022331811163" FilePath="$(VsSolution)\graph\floyd.cpp" Label="floyd.cpp" />
+    <Node Id="(@1 @14)" Category="CodeSchema_ProjectItem" Bounds="147.502233181116,152.004466362233,99.1822331811163,26.0022331811163" FilePath="$(VsSolution)\graph\graph.cpp" Label="graph.cpp" />
+    <Node Id="(@1 @15)" Category="CodeSchema_ProjectItem" Bounds="20,40,79.3122331811163,26.0022331811163" FilePath="$(VsSolution)\graph\dij.cpp" Label="dij.cpp" />
+    <Node Id="(@1 @16)" Category="CodeSchema_ProjectItem" Bounds="276.684466362232,152.004466362233,99.8122331811163,26.0022331811163" FilePath="$(VsSolution)\graph\stdafx.cpp" Label="stdafx.cpp" />
+    <Node Id="(@1 @3)" Category="CodeSchema_ProjectItem" Bounds="20,264.008932724465,152.908899847783,26.0022331811163" FilePath="$(VsSolution)\graph\shortestpathfloyd.h" Label="shortestpathfloyd.h" />
+    <Node Id="(@1 @4)" Category="CodeSchema_ProjectItem" Bounds="271.527799695566,96.0022331811163,97.0255665144496,26.0022331811163" FilePath="$(VsSolution)\graph\traverse.h" Label="traverse.h" />
+    <Node Id="(@1 @5)" Category="CodeSchema_ProjectItem" Bounds="245.171133028899,40,87.3655665144496,26.0022331811163" FilePath="$(VsSolution)\graph\queue.h" Label="queue.h" />
+    <Node Id="(@1 @6)" Category="CodeSchema_ProjectItem" Bounds="20,96.0022331811163,95.0555665144496,26.0022331811163" FilePath="$(VsSolution)\graph\algraph.h" Label="algraph.h" />
+    <Node Id="(@1 @7)" Category="CodeSchema_ProjectItem" Bounds="145.05556651445,96.0022331811163,96.4722331811163,26.0022331811163" FilePath="$(VsSolution)\graph\mgraph.h" Label="mgraph.h" />
+    <Node Id="(@1 @8)" Category="CodeSchema_ProjectItem" Bounds="153.618899847783,208.006699543349,108.658899847783,26.0022331811163" FilePath="$(VsSolution)\graph\makepath.h" Label="makepath.h" />
+    <Node Id="(@1 @9)" Category="CodeSchema_ProjectItem" Bounds="292.277799695566,208.006699543349,137.97556651445,26.0022331811163" FilePath="$(VsSolution)\graph\shortestpathdij.h" Label="shortestpathdij.h" />
+    <Node Id="@2" Category="CodeSchema_PoundIncludeFile" Bounds="0,0,476.782266057798,310.011165905581" FilePath="$(VsSolution)\graph\graph.vcxproj" Group="Expanded" Label="graph.vcxproj" Language="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}" />
+  </Nodes>
+  <Links>
+    <Link Source="@2" Target="(@1 @10)" Category="Contains" />
+    <Link Source="@2" Target="(@1 @11)" Category="Contains" />
+    <Link Source="@2" Target="(@1 @12)" Category="Contains" />
+    <Link Source="@2" Target="(@1 @13)" Category="Contains" />
+    <Link Source="@2" Target="(@1 @14)" Category="Contains" />
+    <Link Source="@2" Target="(@1 @15)" Category="Contains" />
+    <Link Source="@2" Target="(@1 @16)" Category="Contains" />
+    <Link Source="@2" Target="(@1 @3)" Category="Contains" />
+    <Link Source="@2" Target="(@1 @4)" Category="Contains" />
+    <Link Source="@2" Target="(@1 @5)" Category="Contains" />
+    <Link Source="@2" Target="(@1 @6)" Category="Contains" />
+    <Link Source="@2" Target="(@1 @7)" Category="Contains" />
+    <Link Source="@2" Target="(@1 @8)" Category="Contains" />
+    <Link Source="@2" Target="(@1 @9)" Category="Contains" />
+  </Links>
+  <Categories>
+    <Category Id="CodeSchema_PoundIncludeFile" Label="C++ 项目文件" BasedOn="File" CanBeDataDriven="True" IsProviderRoot="False" NavigationActionLabel="C++ 项目文件" />
+    <Category Id="CodeSchema_ProjectItem" Label="项目项" BasedOn="File" CanBeDataDriven="True" DefaultAction="Node:Both:CodeSchema_Type" Icon="File" NavigationActionLabel="项目项" />
+    <Category Id="Contains" Label="包含" Description="链接的源是否包含目标对象" CanBeDataDriven="False" CanLinkedNodesBeDataDriven="True" IncomingActionLabel="包含者" IsContainment="True" OutgoingActionLabel="包含" />
+    <Category Id="File" Label="文件" CanBeDataDriven="True" DefaultAction="Microsoft.Contains" Icon="File" NavigationActionLabel="文件" />
+  </Categories>
+  <Properties>
+    <Property Id="Bounds" DataType="System.Windows.Rect" />
+    <Property Id="CanBeDataDriven" Label="CanBeDataDriven" Description="CanBeDataDriven" DataType="System.Boolean" />
+    <Property Id="CanLinkedNodesBeDataDriven" Label="CanLinkedNodesBeDataDriven" Description="CanLinkedNodesBeDataDriven" DataType="System.Boolean" />
+    <Property Id="DefaultAction" Label="DefaultAction" Description="DefaultAction" DataType="System.String" />
+    <Property Id="Expression" DataType="System.String" />
+    <Property Id="FilePath" Label="文件路径" Description="文件路径" DataType="System.String" />
+    <Property Id="Group" Label="组" Description="将节点显示为组" DataType="Microsoft.VisualStudio.GraphModel.GraphGroupStyle" />
+    <Property Id="GroupLabel" DataType="System.String" />
+    <Property Id="Icon" Label="图标" Description="图标" DataType="System.String" />
+    <Property Id="IncomingActionLabel" Label="IncomingActionLabel" Description="IncomingActionLabel" DataType="System.String" />
+    <Property Id="IsContainment" DataType="System.Boolean" />
+    <Property Id="IsEnabled" DataType="System.Boolean" />
+    <Property Id="IsProviderRoot" Label="IsProviderRoot" Description="IsProviderRoot" DataType="System.Boolean" />
+    <Property Id="Label" Label="标签" Description="可批注对象的可显示标签" DataType="System.String" />
+    <Property Id="Language" Label="语言" Description="语言" DataType="System.String" />
+    <Property Id="NavigationActionLabel" Label="NavigationActionLabel" Description="NavigationActionLabel" DataType="System.String" />
+    <Property Id="OutgoingActionLabel" Label="OutgoingActionLabel" Description="OutgoingActionLabel" DataType="System.String" />
+    <Property Id="TargetType" DataType="System.Type" />
+    <Property Id="Value" DataType="System.String" />
+    <Property Id="ValueLabel" DataType="System.String" />
+  </Properties>
+  <QualifiedNames>
+    <Name Id="Assembly" Label="程序集" ValueType="Uri" />
+    <Name Id="File" Label="文件" ValueType="Uri" />
+  </QualifiedNames>
+  <IdentifierAliases>
+    <Alias n="1" Uri="Assembly=$(VsSolutionUri)/Graph/Graph.vcxproj" />
+    <Alias n="2" Id="(@1)" />
+    <Alias n="3" Uri="File=$(VsSolutionUri)/Graph/ShortestPathFLOYD.h" />
+    <Alias n="4" Uri="File=$(VsSolutionUri)/Graph/Traverse.h" />
+    <Alias n="5" Uri="File=$(VsSolutionUri)/Graph/Queue.h" />
+    <Alias n="6" Uri="File=$(VsSolutionUri)/Graph/ALGraph.h" />
+    <Alias n="7" Uri="File=$(VsSolutionUri)/Graph/MGraph.h" />
+    <Alias n="8" Uri="File=$(VsSolutionUri)/Graph/MakePath.h" />
+    <Alias n="9" Uri="File=$(VsSolutionUri)/Graph/ShortestPathDIJ.h" />
+    <Alias n="10" Uri="File=$(VsSolutionUri)/Graph/targetver.h" />
+    <Alias n="11" Uri="File=$(VsSolutionUri)/Graph/AllPaths.h" />
+    <Alias n="12" Uri="File=$(VsSolutionUri)/Graph/stdafx.h" />
+    <Alias n="13" Uri="File=$(VsSolutionUri)/Graph/Floyd.cpp" />
+    <Alias n="14" Uri="File=$(VsSolutionUri)/Graph/Graph.cpp" />
+    <Alias n="15" Uri="File=$(VsSolutionUri)/Graph/DIJ.cpp" />
+    <Alias n="16" Uri="File=$(VsSolutionUri)/Graph/stdafx.cpp" />
+  </IdentifierAliases>
+  <Styles>
+    <Style TargetType="Node" GroupLabel="C++ 项目文件" ValueLabel="具有类别">
+      <Condition Expression="HasCategory('CodeSchema_PoundIncludeFile')" />
+      <Setter Property="Background" Value="#FFEFEFEF" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="外部" ValueLabel="具有类别">
+      <Condition Expression="HasCategory('Externals')" />
+      <Setter Property="Background" Value="#FFA08080" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="源文件" ValueLabel="具有类别">
+      <Condition Expression="HasCategory('CodeSchema_ProjectItem')" />
+      <Setter Property="Background" Value="#FFC0C0C0" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="#include 组" ValueLabel="具有类别">
+      <Condition Expression="HasCategory('CodeSchema_PoundIncludeGroup')" />
+      <Setter Property="Background" Value="#FFEFEFEF" />
+    </Style>
+  </Styles>
+  <Paths>
+    <Path Id="VsSolution" Value="G:\学习资料\C\WorkSpace\Graph" />
+    <Path Id="VsSolutionUri" Value="file:///G:/学习资料/C/WorkSpace/Graph" />
+  </Paths>
+</DirectedGraph>

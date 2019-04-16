@@ -1,8 +1,8 @@
- #include<stdio.h>
-#include<stdlib.h>
 #include<string.h>
+#include<stdio.h>
+#include<stdlib.h>
 #define INFINITY INT_MAX
-#define MAX_VERTEX_NUM 20
+#define MAX_VERTEX_NUM 100
 #define MAX_NAME 10
 #define MAX_INFO 20
 #define OK 1
@@ -17,12 +17,15 @@ typedef char InfoType;
 typedef enum{DG,DN,UDG,UDN} GraphKind;
 
 
-//顶点类型
+//站点类型
 typedef struct VertexType
 {
-	//顶点名称
+	//站点id
+	int id;
+	//站点名
 	char name[MAX_NAME+1];
 }VertexType;
+
 
 
 //弧的信息类型

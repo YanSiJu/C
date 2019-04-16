@@ -45,6 +45,21 @@
     <ClInclude Include="Traverse.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="AllPaths.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="LinkedList.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Bus.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="BusQuery.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Strategy.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">

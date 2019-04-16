@@ -130,7 +130,10 @@ Status deQueue(LinkQueue *q,QElemType *e)
 	if (!queueEmpty(*q))
 	{
 		QNode *p = (*q).front->next;
-		*e = p->data;
+		if (NULL != e)
+		{
+			*e = p->data;
+		}
 		(*q).front->next = p->next;
 		if (p == (*q).rear)
 		{
