@@ -22,6 +22,7 @@
     <ProjectGuid>{DD7C0A5E-C23D-4518-8739-F6E9B94F5336}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>Graph</RootNamespace>
+    <ProjectName>Strategies</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -146,6 +147,9 @@
     <ClInclude Include="AllPaths.h" />
     <ClInclude Include="Bus.h" />
     <ClInclude Include="BusQuery.h" />
+    <ClInclude Include="cn_ccsu_graduationproject_businquiry_service_impl_QueryServiceImpl.h" />
+    <ClInclude Include="jni.h" />
+    <ClInclude Include="jni_md.h" />
     <ClInclude Include="LinkedList.h" />
     <ClInclude Include="MakePath.h" />
     <ClInclude Include="MGraph.h" />
@@ -167,6 +171,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Strategies.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

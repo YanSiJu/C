@@ -19,5 +19,6 @@ Strategy*  getStrategies(MGraph stations,Bus buses[],char start[],char end[])
 	}
 	LinkedList paths = NULL;
 	getPaths(stations,m,n,&paths);
+	//解决换乘问题
 	return strategies;
 }

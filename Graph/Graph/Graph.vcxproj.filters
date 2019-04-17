@@ -60,6 +60,15 @@
     <ClInclude Include="Strategy.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="cn_ccsu_graduationproject_businquiry_service_impl_QueryServiceImpl.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="jni.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="jni_md.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -72,6 +81,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="Floyd.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Strategies.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
